@@ -19,14 +19,13 @@ export default function Home() {
       <title>iTech Care</title>
     </Head>
     <main >
-{/* <Usersform/> */}
 <Header/>
 <section className=" lg:h-screen px-4 ">
 <div className="flex gap-4 container flex-col justify-center	  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
 <div className="flex flex-col h-fit  gap-12">
   <div className="w-full lg:max-w-2xl  flex flex-col gap-8">
    <div className="w-full mt-32  xl:mt-0 flex flex-col gap-4 ">
-      <h1 className="text-zinc-950 text-5xl lg:text-6xl">Bringing Your Broken Electronics Back to Life</h1>
+      <h1 className="text-zinc-950 text-4xl lg:text-6xl">Bringing Your Broken Electronics Back to Life</h1>
       <p className="text-lg lg:text-2xl text-zinc-500">Give your device the  care that it deserves.</p>
    </div>
     <div className="w-fit gap-4 flex flex-row items-center">
@@ -69,7 +68,7 @@ export default function Home() {
 <section className="bg-white px-4">
 <div className="flex gap-4 container flex-col justify-center	items-center  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className="py-24 w-full justify-center flex flex-col gap-16">
-  <h2 className="text-3xl text-center">Brands we Fix and Sell
+  <h2 className="text-4xl text-center">Brands we Fix and Sell
    <span className="block">Everything you need under a roof</span></h2>
    <div className="flex flex-wrap gap-16 items-center justify-around px-16">
    <svg
@@ -171,7 +170,7 @@ export default function Home() {
 <section className="bg-white px-4">
 <div className="flex gap-4 container flex-col   mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className="py-24 w-full justify-start flex flex-col gap-16">
-  <h2 className="text-3xl w-fit">What we have for you
+  <h2 className="text-4xl w-fit">What we have for you
    </h2>
    <div className="flex flex-wrap gap-4 justify-center items-center  px-8">
   <div className="h-96 w-60 bg-zinc-100 rounded-3xl p-6 flex flex-col gap-4">
@@ -265,7 +264,7 @@ export default function Home() {
 <div className="flex gap-4 container flex-col 	items-start  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
 <div className="py-24 flex flex-col gap-24">
   <div className=" w-full xl:w-3/5 justify-start flex flex-col gap-10">
-    <h2 className="text-3xl w-fit text-white">Who We Are?
+    <h2 className="text-4xl w-fit text-white">Who We Are?
     <span className="block">Or What Just Makes Us Different</span>
      </h2>
      <p className="text-2xl	text-zinc-300">At iTech Care, we offer expert repair services for all kinds of mobile phones, including cracked screens, water damage, charging issues, and more. </p>
@@ -275,7 +274,7 @@ export default function Home() {
       <div className="h-3/5 flex justify-center"><img  src="/static-images/specials/screencrack.png" alt="screencrack"/></div>
       <div className="flex flex-col gap-4 text-white">
         <h6 className="text-xl font-medium text-center">Broken Screen Replacement</h6>
-        <p className="text-lg leading-5 text-center text-zinc-300">Viewing your phone on a cracked screen can be bad experience.</p>
+        <p className="text-lg leading-5 text-center text-zinc-300">Viewing your phone on a cracked screen can be bad experience.iTech Care can fix it with 6 months warranty.</p>
       </div>
     </div>
     <div className="h-96 w-80 items-center p-4 flex flex-col gap-4">
@@ -315,6 +314,70 @@ export default function Home() {
     </div>
      </div>
 </div>
+</div>
+</section>
+<section className="bg-white px-4">
+<div className="flex gap-16 py-24 container flex-col xl:flex-row    mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
+  <div className=" w-full xl:w-1/2 justify-start flex flex-col gap-8">
+  <h2 className="text-4xl w-fit">Close to You
+    <span className="block">  Like Always</span>
+   </h2>
+   <div className="flex flex-row gap-4 items-center">
+   <svg
+  width={20}
+  height={21}
+  viewBox="0 0 20 21"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    fillRule="evenodd"
+    clipRule="evenodd"
+    d="M5.05025 4.55025C7.78392 1.81658 12.2161 1.81658 14.9497 4.55025C17.6834 7.28392 17.6834 11.7161 14.9497 14.4497L10 19.3995L5.05025 14.4497C2.31658 11.7161 2.31658 7.28392 5.05025 4.55025ZM10 11.5C11.1046 11.5 12 10.6046 12 9.5C12 8.39543 11.1046 7.5 10 7.5C8.89543 7.5 8 8.39543 8 9.5C8 10.6046 8.89543 11.5 10 11.5Z"
+    fill="#22272F"
+  />
+</svg>
+<span className="text-lg font-medium">359 Centre road, Bentleigh VIC 3204</span>
+   </div>
+   <div className="flex flex-col gap-4">
+    <h6 className="text-2xl font-medium">Store Hours</h6>
+    <ul className="text-lg text-zinc-500">
+      <li>Monday 09:00 am – 06:00 pm</li>
+      <li>Tuesday 09:00 am – 06:00 pm</li>
+      <li>Wednesday 09:00 am – 06:00 pm</li>
+      <li>Thursday 09:00 am – 06:00 pm</li>
+      <li>Friday 09:00 am – 06:00 pm</li>
+      <li>Saturday 10:00 am – 05:00 pm</li>
+      <li>Sunday 10:00 am – 05:00 pm</li>
+
+
+    </ul>
+   </div>
+
+
+  </div>
+  <div className="w-full xl:w-1/2 h-96 xl:h-100 bg-slate-500">
+  <iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.533571636496!2d145.0362127!3d-37.9179636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad66944ed5f4ec5%3A0x631ede2e27b5a804!2s359%20Centre%20Rd%2C%20Bentleigh%20VIC%203204!5e0!3m2!1sen!2sau!4v1720267970873!5m2!1sen!2sau"
+ className="h-full w-full"
+  style={{ border: 0 }}
+  allowFullScreen=""
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+/>
+</div>
+</div>
+</section>
+<section className="bg-white px-4">
+<div className="flex gap-16 py-24 container flex-col xl:flex-row  justify-center items-center  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
+  <div className="w-full md:w-4/5 lg:w-2/5  justify-center items-center flex flex-col gap-8">
+  <h2 className="text-4xl w-fit text-center">We’re Always Here
+  
+    <span className="block">  To Serve Your Needs</span>
+   </h2>
+<Usersform/>
+  </div>
+
 </div>
 </section>
     </main>
