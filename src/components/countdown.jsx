@@ -5,6 +5,8 @@ const Countdown = ({setIsCompleted,isCompleted}) => {
 
   useEffect(() => {
     const targetDate = new Date('August 1, 2024 00:00:00').getTime();
+    // const targetDate = new Date('July 5, 2024 20:37:00').getTime();
+
 
     const countdown = () => {
       const now = new Date().getTime();
