@@ -1,0 +1,49 @@
+@import "/src/styles/variables.scss";
+
+body {
+    font-family: 'Clash Grotesk', sans-serif;
+}
+
+h1{
+font-family: "Clash Grotesk";
+
+font-style: normal;
+font-weight: 400;
+
+text-transform: capitalize;
+}
+.Polaris-Button--variantPrimary {
+    background: var(--itc-Colors-Button-Primary-Gradient);
+    box-shadow: var(--itc-Colors-Button-Shadow-Primary);
+
+    &:hover{
+        background: var(    --itc-Colors-Button-Primary-Gradient-Hover);
+        box-shadow: var(--itc-Colors-Button-Shadow-Primary-Hover);
+
+    }
+
+    &:active{
+        background: var(    --itc-Colors-Button-Primary-Gradient-Hover);
+        box-shadow: var(--itc-Colors-Button-Shadow-Primary-Pressed);
+    }
+}
+
+
+.Polaris-Button--sizeMedium{
+padding:14px 12px;
+border-radius: 10px;
+
+
+span{
+    font-size: 18px!important;
+
+}
+}
+
+.countdown-field {
+    box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.347);
+    min-width: 54px;
+}
+.countdown-label {
+    min-width: 54px;
+}
