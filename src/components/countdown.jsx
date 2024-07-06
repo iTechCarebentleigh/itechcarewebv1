@@ -35,7 +35,7 @@ const Countdown = ({setIsCompleted,isCompleted}) => {
         <div className='flex flex-col'>
           <h5 className="text-zinc-950 text-xl lg:text-2xl font-medium">15% off on repairs & Accessories</h5>
           <p className="text-lg lg:text-2xl text-zinc-500">Offer ends in:</p>
-          <div className="text-lg lg:text-2xl text-zinc-500  flex flex-row gap-2 mt-8 w-full">
+          <div className="text-lg lg:text-2xl text-zinc-500 items-center flex flex-row gap-2 mt-8 w-full">
             <div className='py-2 border-2 border-zinc-400 flex justify-center rounded-lg countdown-field border-zinc-100 bg-zinc-50'>
               {timeLeft.days}
             </div>:

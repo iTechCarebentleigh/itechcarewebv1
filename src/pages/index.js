@@ -25,7 +25,7 @@ export default function Home() {
 <div className="flex gap-4 container flex-col justify-center	  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
 <div className="flex flex-col h-fit  gap-12">
   <div className="w-full lg:max-w-2xl  flex flex-col gap-8">
-   <div className="w-full flex flex-col gap-4 ">
+   <div className="w-full mt-48 xl:mt-0 flex flex-col gap-4 ">
       <h1 className="text-zinc-950 text-5xl lg:text-6xl">Bringing Your Broken Electronics Back to Life</h1>
       <p className="text-lg lg:text-2xl text-zinc-500">Give your device the  care that it deserves.</p>
    </div>

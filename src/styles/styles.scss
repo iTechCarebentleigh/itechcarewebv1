@@ -12,21 +12,34 @@ font-weight: 400;
 
 text-transform: capitalize;
 }
+
+
 .Polaris-Button--variantPrimary {
     background: var(--itc-Colors-Button-Primary-Gradient);
     box-shadow: var(--itc-Colors-Button-Shadow-Primary);
-
-    &:hover{
-        background: var(    --itc-Colors-Button-Primary-Gradient-Hover);
-        box-shadow: var(--itc-Colors-Button-Shadow-Primary-Hover);
-
+  
+    &:hover {
+      background: var(--itc-Colors-Button-Primary-Gradient-Hover);
+      box-shadow: var(--itc-Colors-Button-Shadow-Primary-Hover);
     }
-
-    &:active{
-        background: var(    --itc-Colors-Button-Primary-Gradient-Hover);
-        box-shadow: var(--itc-Colors-Button-Shadow-Primary-Pressed);
+  
+    &:active {
+      background: var(--itc-Colors-Button-Primary-Gradient-Hover);
+      box-shadow: var(--itc-Colors-Button-Shadow-Primary-Pressed);
     }
-}
+  }
+  
+  @media (max-width: 1024px) {
+    .Polaris-Button--variantPrimary:hover {
+      background: var(--itc-Colors-Button-Primary-Gradient);
+      box-shadow: var(--itc-Colors-Button-Shadow-Primary);
+    }
+  
+    .Polaris-Button--variantPrimary:active {
+      background: var(--itc-Colors-Button-Primary-Gradient-Hover);
+      box-shadow: var(--itc-Colors-Button-Shadow-Primary-Pressed);
+    }
+  }
 
 
 .Polaris-Button--sizeMedium{
