@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { collection, addDoc, getDocs } from "firebase/firestore"; 
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Button, TextField, Banner } from '@shopify/polaris';
 import Link from "next/link";
+import emailjs from 'emailjs-com';
 
 export default function Usersform() {
   const [name, setName] = useState("");
@@ -67,6 +68,18 @@ export default function Usersform() {
         message: newUser.message.trim(),
       });
       setUsers([...users, newUser]);
+
+      // Send email using EmailJS
+      emailjs
+      .send('service_2mosnk6', 'template_tkz4tmd', {
+        from_name: name,
+        from_email: email,
+        from_phone:phone,
+        to_email: 'itechcare.bentleigh@gmail.com',
+        message: message,
+      }, 'SqojNqjknrKhiwoOj')
+      
+
       setName("");
       setEmail("");
       setPhone("");
@@ -131,7 +144,7 @@ export default function Usersform() {
         </Banner>
       )}
       <p className="text-lg text-center text-zinc-500">
-      By submitting, you agree to our <Link className="text-semantic-action-600 underline" href={'/privacy-policy'}>Privacy Policy</Link>  and <Link className="text-semantic-action-600 underline"  href={'/terms-and-conditions'}>Terms & Conditions</Link> 
+        By submitting, you agree to our <Link className="text-semantic-action-600 underline" href={'/privacy-policy'}>Privacy Policy</Link> and <Link className="text-semantic-action-600 underline" href={'/terms-and-conditions'}>Terms & Conditions</Link>
       </p>
     </>
   );
