@@ -16,6 +16,9 @@ module.exports = {
         semantic:{
           primary:{
             "600":"var(--itc-Colors-Semantic-Primary-600)"
+          },
+          action:{
+            '600':'var(--itc-Colors-Semantic-Action-600)'
           }
         }
       }

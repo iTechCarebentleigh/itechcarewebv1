@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import {Button} from '@shopify/polaris';
 
 
 export default function Header() {
@@ -80,9 +81,23 @@ export default function Header() {
   </defs>
 </svg>
 </div>
-<div className="flex flex-row gap-16">
-    <a href className="text-lg">about</a>
-    <a href className="text-lg">contact</a>
+<div className="flex flex-row gap-8 ">
+  <div className="hidden lg:flex flex-row gap-16 items-center">
+      <a href className="text-lg">about</a>
+      <a href className="text-lg">contact</a>
+      <Button>Call Now: +61 9191 269</Button>
+  </div>
+  
+ <div className="block lg:hidden">
+    <Button
+    accessibilityLabel="Add theme" 
+    icon={
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+    </svg>
+    
+    }></Button>
+ </div>
 
 </div>
      </header>

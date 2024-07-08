@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 // import { collection, addDoc, getDocs } from "firebase/firestore"; 
 // import { db } from "../../firebase";
-import { Usersform,Header,Countdown } from "@/components";
+import { Usersform,Header,Countdown,Footer } from "@/components";
 import Head from "next/head";
 import {Button} from '@shopify/polaris';
 
@@ -20,7 +20,7 @@ export default function Home() {
     </Head>
     <main >
 <Header/>
-<section className=" lg:h-screen px-4 ">
+<section className=" xl:h-screen px-4 ">
 <div className="flex gap-4 container flex-col justify-center	  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
 <div className="flex flex-col h-fit  gap-12">
   <div className="w-full lg:max-w-2xl  flex flex-col gap-8">
@@ -267,7 +267,7 @@ export default function Home() {
     <h2 className="text-4xl w-fit text-white">Who We Are?
     <span className="block">Or What Just Makes Us Different</span>
      </h2>
-     <p className="text-2xl	text-zinc-300">At iTech Care, we offer expert repair services for all kinds of mobile phones, including cracked screens, water damage, charging issues, and more. </p>
+     <p className="text-lg lg:text-2xl	text-zinc-300">At iTech Care, we offer expert repair services for all kinds of mobile phones, including cracked screens, water damage, charging issues, and more. </p>
      </div>
      <div className="flex flex-wrap gap-4 justify-center items-center  px-4">
      <div className="h-96 w-80 items-center p-4 flex flex-col gap-4">
@@ -380,6 +380,7 @@ export default function Home() {
 
 </div>
 </section>
+<Footer/>
     </main>
     </>
   );

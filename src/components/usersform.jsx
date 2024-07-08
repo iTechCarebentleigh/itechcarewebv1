@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
 import { db } from "../../firebase";
 import { Button, TextField, Banner } from '@shopify/polaris';
+import Link from "next/link";
 
 export default function Usersform() {
   const [name, setName] = useState("");
@@ -129,6 +130,9 @@ export default function Usersform() {
           <p>Your query has been submitted!</p>
         </Banner>
       )}
+      <p className="text-md lg:text-lg text-center text-zinc-500">
+      By submitting, you agree to our <Link className="text-semantic-action-600 underline" href={'/privacy-policy'}>Privacy Policy</Link>  and <Link className="text-semantic-action-600 underline"  href={'/terms-and-conditions'}>Terms & Conditions</Link> 
+      </p>
     </>
   );
 }
