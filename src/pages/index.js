@@ -11,12 +11,21 @@ import {Button} from '@shopify/polaris';
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+
+
+
+ const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   const [isCompleted, setIsCompleted] = useState(false);
 
   return (
     <>
     <Head>
-      <title>iTech Care</title>
+      <title>iTech Care-Top Repairs, Quality Accessories</title>
     </Head>
     <main >
 <Header/>
@@ -24,12 +33,15 @@ export default function Home() {
 <div className="flex gap-4 container flex-col justify-center	  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
 <div className="flex flex-col h-fit  gap-12">
   <div className="w-full lg:max-w-2xl  flex flex-col gap-8">
-   <div className="w-full mt-32  xl:mt-0 flex flex-col gap-4 ">
+   <div className="w-full mt-40  xl:mt-0 flex flex-col gap-4 ">
       <h1 className="text-zinc-950 text-4xl lg:text-6xl">Bringing Your Broken Electronics Back to Life</h1>
       <p className="text-lg lg:text-2xl text-zinc-500">Give your device the  care that it deserves.</p>
    </div>
     <div className="w-fit gap-4 flex flex-row items-center">
-        <Button variant="primary" size="medium">Get Free Quote</Button>
+        <Button variant="primary" size="medium"   onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("contact-section");
+              }}>Get Free Quote</Button>
         <Button icon={
           <svg
           width={20}
@@ -46,7 +58,10 @@ export default function Home() {
           />
         </svg>
         
-      } size="medium">Visit us Today</Button>
+      } size="medium" onClick={(e) => {
+        e.preventDefault();
+        scrollToSection("address-section");
+      }}>Visit us Today</Button>
     </div>
   </div>
   <div className="w-full lg:max-w-2xl">
@@ -251,7 +266,10 @@ export default function Home() {
    <div className="w-full flex justify-center ">
      <div className="flex flex-col  items-center w-fit gap-4">
       <p className="text-xl text-zinc-500">Can’t find what you’re looking for?</p>
-      <div>    <Button className="w-fit" size="medium">Contact Us</Button>
+      <div>    <Button className="w-fit" size="medium" onClick={(e) => {
+        e.preventDefault();
+        scrollToSection("contact-section");
+      }}>Contact Us</Button>
       </div>
      </div>
    </div>
@@ -259,7 +277,7 @@ export default function Home() {
   </div>
 </div>
 </section>
-<section className="bg-semantic-primary-600 px-4  relative">
+<section id="about-section" className="bg-semantic-primary-600 px-4  relative">
   <img src="/static-images/logo-big.png" className="w-96 hidden xl:block absolute -top-32 right-0"/>
 <div className="flex gap-4 container flex-col 	items-start  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
 <div className="py-24 flex flex-col gap-24">
@@ -274,7 +292,7 @@ export default function Home() {
       <div className="h-3/5 flex justify-center"><img  src="/static-images/specials/screencrack.png" alt="screencrack"/></div>
       <div className="flex flex-col gap-4 text-white">
         <h6 className="text-xl font-medium text-center">Broken Screen Replacement</h6>
-        <p className="text-lg leading-5 text-center text-zinc-300">Viewing your phone on a cracked screen can be bad experience.iTech Care can fix it with 6 months warranty.</p>
+        <p className="text-lg leading-5 text-center text-zinc-300">Viewing your phone on a cracked screen can be bad experience.iTech Care can fix it with 3 months warranty.</p>
       </div>
     </div>
     <div className="h-96 w-80 items-center p-4 flex flex-col gap-4">
@@ -316,7 +334,7 @@ export default function Home() {
 </div>
 </div>
 </section>
-<section className="bg-white px-4">
+<section className="bg-white px-4" id="address-section">
 <div className="flex gap-16 py-24 container flex-col xl:flex-row    mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className=" w-full xl:w-1/2 justify-start flex flex-col gap-8">
   <h2 className="text-4xl w-fit">Close to You
@@ -368,7 +386,7 @@ export default function Home() {
 </div>
 </div>
 </section>
-<section className="bg-white px-4">
+<section  id="contact-section" className="bg-white px-4">
 <div className="flex gap-16 py-24 container flex-col xl:flex-row  justify-center items-center  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className="w-full md:w-4/5 lg:w-2/5  justify-center items-center flex flex-col gap-8">
   <h2 className="text-4xl w-fit text-center">We’re Always Here

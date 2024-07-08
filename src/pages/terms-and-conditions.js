@@ -11,13 +11,13 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Privacypolicy() {
+export default function Termsandconditions() {
   const [isCompleted, setIsCompleted] = useState(false);
 
   return (
     <>
     <Head>
-      <title>Privacy Policy</title>
+      <title>Terms & Conditions</title>
     </Head>
     <main >
     <div className="logo-container flex py-4 justify-center bg-slate-50">
@@ -98,88 +98,41 @@ export default function Privacypolicy() {
 </div>
 <section className="bg-slate-50 px-4">
 <div className="flex gap-16 pt-24 pb-8 container flex-col xl:flex-row  justify-center items-center  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
-  <div className="w-full md:w-4/5 lg:w-2/5  justify-center items-center flex flex-col gap-2">
-  <h1 className="text-zinc-950 text-4xl lg:text-6xl">Privacy Policy</h1>
+  <div className="w-full  justify-center items-center flex flex-col gap-2">
+  <h1 className="text-zinc-950 text-4xl lg:text-6xl">Terms & Conditions</h1>
   </div>
 </div>
 </section>
 <section className="bg-white px-4">
 <div className="flex gap-12 py-24 container flex-col mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-4xl">
-  <div className="w-full md:w-4/5 lg:w-2/5   flex flex-col gap-2">
-  <h4 className="text-zinc-950 text-xl lg:text-2xl">Last Updated: July 04, 2024</h4>
-  </div>
-  <p className="text-slate-zinc-500 text-lg font-normal">Your privacy is important to us. It is iTech Care’s policy to respect your privacy regarding any information we may collect from you across our website, <Link href={'http://itechcare.com.au/'} className="text-semantic-action-600 underline">www.itechcare.com.au</Link>, and other sites we own and operate.</p>
-
+  
 <article className="flex flex-col gap-10">
-    <ul className="flex list-decimal	 flex-col gap-16">
-        <li className="flex flex-col gap-4">
-            <h5 className="text-xl text-zinc-950 font-medium  ">
-            1. Information We Collect
-            </h5>
-            <p className="text-slate-zinc-500 text-lg font-normal">
-            We only ask for personal information when we truly need it to provide a service to you. This includes your name, phone number, and email address, which we collect by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.
-            </p>
-            </li>
-            <li className="flex flex-col gap-4">
-            <h5 className="text-xl text-zinc-950 font-medium  ">
-            2. Use of Your Information            </h5>
-            <p className="text-slate-zinc-500 text-lg font-normal">
-            We only retain collected information for as long as necessary to provide you with your requested service. The data we store is protected within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use, or modification.            </p>
-            </li>
-            <li className="flex flex-col gap-4">
-            <h5 className="text-xl text-zinc-950 font-medium  ">
-            3. Disclosure of Your Information           </h5>
-            <p className="text-slate-zinc-500 text-lg font-normal">
-            We don’t share any personally identifying information publicly or with third parties, except when required to by law.  </p>          
-            </li>
-            <li className="flex flex-col gap-4">
-            <h5 className="text-xl text-zinc-950 font-medium  ">
-            4. Cookies and Tracking Technologies </h5>
-            <p className="text-slate-zinc-500 text-lg font-normal">
-            Our website uses cookies and similar tracking technologies to enhance your browsing experience and to understand how you interact with our site. 
-            This includes:</p>  
-            <ul className="list-disc text-slate-zinc-500 text-lg font-normal">
-              <li className="ml-4">Facebook Pixel and Google Analytics: These tools help us analyze web traffic and user behavior. Their use is governed by the privacy policies of Facebook and Google.
-              </li>
-            </ul>
-            <p className="text-slate-zinc-500 text-lg font-normal">
-            Most browsers are set to accept cookies by default. You can choose to set your browser to remove or reject cookies, but this may affect the availability and functionality of our website.
-            </p>        
-            </li>
-            <li className="flex flex-col gap-4">
-            <h5 className="text-xl text-zinc-950 font-medium  ">
-            5. Security of Your Information</h5>
-            <p className="text-slate-zinc-500 text-lg font-normal">
-            We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against interception or misuse.
-            </p>          
-            </li>
-            <li className="flex flex-col gap-4">
-            <h5 className="text-xl text-zinc-950 font-medium">
-            6. External Links</h5>
-            <p className="text-slate-zinc-500 text-lg font-normal">
-            Our website may link to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.
-            </p>          
-            </li>
-            <li className="flex flex-col gap-4">
-            <h5 className="text-xl text-zinc-950 font-medium">
-            7. Your Consent</h5>
-            <p className="text-slate-zinc-500 text-lg font-normal">
-            You are free to refuse our request for your personal information, with the understanding that we may be unable to provide you with some of your desired services. Your continued use of our website will be regarded as acceptance of our practices around privacy and personal information.            </p>          
-            </li>
-            <li className="flex flex-col gap-4">
-            <h5 className="text-xl text-zinc-950 font-medium">
-            8. Contact Us</h5>
-            <p className="text-slate-zinc-500 text-lg font-normal">
-            If you have any questions about how we handle user data and personal information, feel free to contact us at:</p> 
-            <address className="text-lg text-zinc-900 font-normal mt-8">
-            
-            <div className="text-lg text-zinc-900 font-normal mt-8">iTech Care<span className="block">359 Centre road, Bentleigh VIC 3204</span> 
-            <span className="mt-8">Email: itechcare.bentleigh@gmail.com</span>
-            <span className="block">Phone: +61 9191 2669</span>
-            </div>
-              </address>                     
-            </li>
-    </ul>
+<div className="flex gap-4 flex-col">
+    <div className="w-full md:w-4/5 lg:w-2/5   flex flex-col gap-2">
+    <h4 className="text-zinc-950 text-xl lg:text-2xl">Policy on Accessories</h4>
+    </div>
+    <p className="text-slate-zinc-500 text-lg font-normal">
+    We do not accept returns for accessories due to a change of mind. However, if the goods are faulty or non-functional, they can be exchanged within 7 days of purchase. Damage to accessories will not be eligible for coverage or exchange. While we advise using glass screen protectors and covers for all devices, we are not responsible for any damage to your device. Deposits on special orders cannot be canceled if the order has already been placed with the supplier.
+    </p>
+  
+  </div>
+  <div className="flex gap-4 flex-col">
+    <div className="w-full md:w-4/5 lg:w-2/5   flex flex-col gap-2">
+    <h4 className="text-zinc-950 text-xl lg:text-2xl">Policy on purchase of new phone</h4>
+    </div>
+    <p className="text-slate-zinc-500 text-lg font-normal">
+    If a newly purchased phone is found to be faulty, it must be returned to the manufacturer for repair or servicing. We do not accept returns for new phones due to a change of mind. POLICY ON PURCHASE OF REFURBISHED/ SECOND HAND PHONE: If you decide to return the phone due to a change of mind within 7 days of purchase, a 15% processing fee will apply. The phone must be returned with all accessories and in the same condition as when purchased. Any faults on the device, such as water damage, physical damage, or tampering, will void the warranty.     </p>
+  
+  </div>
+
+  <div className="flex gap-4 flex-col">
+    <div className="w-full md:w-4/5 lg:w-2/5   flex flex-col gap-2">
+    <h4 className="text-zinc-950 text-xl lg:text-2xl">Repair Policy</h4>
+    </div>
+    <p className="text-slate-zinc-500 text-lg font-normal">
+    All repairs are backed by a 90-day warranty, ensuring coverage for both replacement parts and workmanship. However, any physical or water damage occurring to the device after our repair will nullify this warranty. Additionally, repaired devices must be collected within Three months from the date they are ready. We always prioritise the utmost care to safeguard customer information on devices. However, in the event of any unintentional data loss, we cannot assume responsibility.    </p>
+  
+  </div>
 </article>
 </div>
 </section>

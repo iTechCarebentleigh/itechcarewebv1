@@ -86,8 +86,8 @@ export default function Footer() {
 </Link>
        <div className="flex flex-col gap-2 text-zinc-200">
       
-    <Link href={"/"} className="text-lg w-fit font-medium underline">Privacy Policy</Link>
-    <Link href={"/"} className="text-lg w-fit font-medium underline">Terms & Conditions</Link>
+    <Link href={"/privacy-policy"} className="text-lg w-fit font-medium underline">Privacy Policy</Link>
+    <Link href={"/terms-and-conditions"} className="text-lg w-fit font-medium underline">Terms & Conditions</Link>
 
        </div>
   </div>
