@@ -305,8 +305,8 @@ export default function Home() {
     <div className="h-96 w-80 items-center p-4 flex flex-col gap-4">
       <div className="h-3/5 flex justify-center"><img alt="chargingport" src="/static-images/specials/chargingport.png"/></div>
       <div className="flex flex-col gap-4 text-white">
-        <h6 className="text-xl font-medium text-center">Charging Port Repairs</h6>No charge, no phone. We can repair it in a few minutes so you dont miss out on anything.
-        <p className="text-lg leading-5 text-center text-zinc-300"></p>
+        <h6 className="text-xl font-medium text-center">Charging Port Repairs</h6>
+        <p className="text-lg leading-5 text-center text-zinc-300">No charge, no phone. We can repair it in a few minutes so you dont miss out on anything.</p>
       </div>
     </div>
     <div className="h-96 w-80 items-center p-4 flex flex-col gap-4">
