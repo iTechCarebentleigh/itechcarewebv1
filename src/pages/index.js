@@ -194,7 +194,7 @@ export default function Home() {
     </div>
     <div className="flex flex-col gap-2">
       <h6 className="text-xl">iPhone Repairs</h6>
-      <p className="text-base text-zinc-500">Our technicians and high-quality parts, we ensure your iPhone is restored to optimal condition.</p>
+      <p className="text-base text-zinc-500">With our technicians and high-quality parts, we ensure your iPhone is restored to optimal condition.</p>
     </div>
   </div>
   <div className="h-96 w-60 bg-zinc-100 rounded-3xl p-6 flex flex-col gap-4">
@@ -230,7 +230,7 @@ export default function Home() {
     </div>
     <div className="flex flex-col gap-2">
       <h6 className="text-xl">iPhone Chargers</h6>
-      <p className="text-base text-zinc-500">iPhone chargers that we provide are designed to quickly charger your iPhones with max power.</p>
+      <p className="text-base text-zinc-500">iPhone chargers that we provide are designed to quickly charge your iPhones with max power.</p>
     </div>
   </div>
   <div className="h-96 w-60 bg-zinc-100 rounded-3xl p-6 flex flex-col gap-4">
@@ -292,7 +292,7 @@ export default function Home() {
       <div className="h-3/5 flex justify-center"><img  src="/static-images/specials/screencrack.png" alt="screencrack"/></div>
       <div className="flex flex-col gap-4 text-white">
         <h6 className="text-xl font-medium text-center">Broken Screen Replacement</h6>
-        <p className="text-lg leading-5 text-center text-zinc-300">Viewing your phone on a cracked screen can be bad experience.iTech Care can fix it with 3 months warranty.</p>
+        <p className="text-lg leading-5 text-center text-zinc-300">Viewing your phone on a cracked screen can be bad experience.iTech Care can fix it and backed by warranty.</p>
       </div>
     </div>
     <div className="h-96 w-80 items-center p-4 flex flex-col gap-4">
@@ -305,15 +305,15 @@ export default function Home() {
     <div className="h-96 w-80 items-center p-4 flex flex-col gap-4">
       <div className="h-3/5 flex justify-center"><img alt="chargingport" src="/static-images/specials/chargingport.png"/></div>
       <div className="flex flex-col gap-4 text-white">
-        <h6 className="text-xl font-medium text-center">Charging Port Repairs</h6>
-        <p className="text-lg leading-5 text-center text-zinc-300">No charger, no phone. We can repair it in a few minutes so you can go live.</p>
+        <h6 className="text-xl font-medium text-center">Charging Port Repairs</h6>No charge, no phone. We can repair it in a few minutes so you dont miss out on anything.
+        <p className="text-lg leading-5 text-center text-zinc-300"></p>
       </div>
     </div>
     <div className="h-96 w-80 items-center p-4 flex flex-col gap-4">
       <div className="h-3/5 flex justify-center"><img  src="/static-images/specials/batteryreplacement.png" alt="batteryreplacement"/></div>
       <div className="flex flex-col gap-4 text-white">
         <h6 className="text-xl font-medium text-center">Battery Replacement</h6>
-        <p className="text-lg leading-5 text-center text-zinc-300">With our experienced battery saving recommendations, you may get your battery changed with warranty.</p>
+        <p className="text-lg leading-5 text-center text-zinc-300">With our expert battery-saving services, you can have your battery replaced with various warranty options available.</p>
       </div>
     </div>
     <div className="h-96 w-80 items-center p-4 flex flex-col gap-4">
