@@ -30,8 +30,8 @@ export default function Productcard({ productTitle, productDescription, initialS
     return (
         <>
             <div
-                style={{ height: '410px' }}
-                className="flex hover:shadow-xl hover:shadow-slate-200 bg-white w-64 max-w-64 flex-col rounded-xl overflow-hidden transition-shadow duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 "
+               
+                className="flex hover:shadow-xl hover:shadow-slate-200 bg-white w-40 lg:w-64  h-64 lg:h-96 flex-col rounded-xl overflow-hidden transition-shadow duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 "
                 tabIndex="0" // Make div focusable
             >
                 <div className="w-full relative h-3/5">
@@ -45,17 +45,17 @@ export default function Productcard({ productTitle, productDescription, initialS
                     {image && <img src={urlForImage(image).url()} alt={productTitle} className="h-full w-full object-cover" />}
                 </div>
                 <div className="flex flex-col p-3 h-2/5 justify-between gap-2">
-                    <div className="flex gap-2 flex-col h-full">
+                    <div className="flex gap-1 lg:gap-2 flex-col h-full">
                         <h6
                             style={{
-                                lineHeight: '23.4px',
+                                lineHeight: '100%',
                                 display: '-webkit-box',
                                 WebkitLineClamp: 2, // Adjust the number of lines to your needs
                                 WebkitBoxOrient: 'vertical',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
                             }}
-                            className="font-medium text-lg"
+                            className="font-medium text-sm lg:text-lg"
                         >
                             {productTitle}
                         </h6>
@@ -67,13 +67,13 @@ export default function Productcard({ productTitle, productDescription, initialS
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
                             }}
-                            className="w-full text-zinc-500 text-base font-regular"
+                            className="w-full text-zinc-500 text-xs lg:text-base font-regular"
                         >
                             {productDescription}
                         </p>
                     </div>
                     {/* Display condition tag */}
-                    <span className={`text-lg ${inStock ? 'text-green-500' : 'text-red-600'}`}>
+                    <span className={`text-xs lg:text-lg ${inStock ? 'text-green-500' : 'text-red-600'}`}>
                         {inStock ? 'In Stock' : 'Out of Stock'}
                     </span>
                 </div>

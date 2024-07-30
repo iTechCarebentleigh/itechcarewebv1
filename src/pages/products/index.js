@@ -73,7 +73,7 @@ const Productshomepage = ({ products }) => {
                     onClearButtonClick={handleClearSearch}
                   />
                 </div>
-                <div className='flex flex-col lg:flex-row items-center gap-4'>
+                <div className='flex flex-col lg:flex-row items-start lg:items-center gap-4'>
                   <span className='text-lg font-medium'>Filter:</span>
                   <ButtonGroup variant="segmented" >
                     <Button pressed={filter === 'all'}  onClick={() => handleFilterChange('all')}><span style={{fontSize:'16px!important'}}>All</span></Button>
@@ -84,7 +84,7 @@ const Productshomepage = ({ products }) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-wrap gap-10 justify-center">
+            <div className="flex flex-wrap gap-10 justify-center min-h-96">
               {currentProducts.length > 0 ? (
                 currentProducts.map(product => (
                   <Link href={`/products/${product.slug}`} key={product.name}>
@@ -109,7 +109,7 @@ const Productshomepage = ({ products }) => {
               )}
             </div>
             {/* Pagination */}
-            <div className="flex justify-center mt-8">
+            <div className="flex justoi justify-center mt-8">
               <ButtonGroup>
                 {Array.from({ length: Math.ceil(filteredProducts.length / pageSize) }, (_, index) => (
                   <Button key={index + 1} onClick={() => paginate(index + 1)} pressed={currentPage === index + 1}>
