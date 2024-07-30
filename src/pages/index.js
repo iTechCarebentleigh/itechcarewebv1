@@ -198,7 +198,7 @@ console.log(shopImages)
     <Button className="w-fit" size="medium" variant="plain">View all</Button>
     </Link>
     </div>
-   <div className="flex flex-wrap gap-10 justify-center  ">
+   <div className="flex flex-wrap gap-4 lg:gap-10 justify-center  ">
    {products.slice(0, 4).map(product => (
   <Link href={`/products/${product.slug}`} key={product.slug} passHref>
   

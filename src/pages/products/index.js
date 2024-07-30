@@ -84,7 +84,7 @@ const Productshomepage = ({ products }) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-wrap gap-10 justify-center min-h-96">
+            <div className="flex flex-wrap gap-4 lg:gap-10 justify-center min-h-96">
               {currentProducts.length > 0 ? (
                 currentProducts.map(product => (
                   <Link href={`/products/${product.slug}`} key={product.name}>
