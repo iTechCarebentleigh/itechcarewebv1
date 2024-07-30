@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Footer, Header,Productcard,Breadcrumb } from '@/components';
+import { Footer, Header, Productcard, Breadcrumb } from '@/components';
 import { client } from '../../../sanity/lib/client';
 import Head from 'next/head';
 import Link from 'next/link';
-import { TextField, ButtonGroup, Button, Icon , Frame, Moda} from '@shopify/polaris';
+import { TextField, ButtonGroup, Button, Icon } from '@shopify/polaris';
 import { SearchIcon } from '@shopify/polaris-icons';
-
 
 const Productshomepage = ({ products }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,11 +12,6 @@ const Productshomepage = ({ products }) => {
   const [filter, setFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 8; // Number of products to display per page
-  const [active, setActive] = useState(true);
-
-  const handleChange = useCallback(() => setActive(!active), [active]);
-
-  const activator = <Button onClick={handleChange}>Open</Button>;
 
   const handleSearchChange = useCallback((value) => setSearchTerm(value), []);
   const handleFilterChange = (newFilter) => setFilter(newFilter);
@@ -56,18 +50,18 @@ const Productshomepage = ({ products }) => {
         <title>All Products</title>
       </Head>
       <Header />
-      
+
       <section className="bg-slate-50 px-4">
         <div className="flex gap-4 container flex-col justify-center items-center mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
-          <div className="py-32 lg:py-16 w-full mt-16 justify-center flex flex-col gap-16">
-            <div className="w-full  flex flex-col ">
-              <Breadcrumb links={breadcrumbLinks}/>
-              <h2 className="text-4xl ">
+          <div className="py-32 lg:py-16 w-full mt-4 justify-center flex flex-col gap-16">
+            <div className="w-full flex flex-col">
+              <Breadcrumb links={breadcrumbLinks} />
+              <h2 className="text-4xl">
                 All Listings ({filteredProducts.length})
               </h2>
             </div>
             <div className="w-full flex flex-col justify-center mb-4">
-              <div className='flex flex-col lg:flex-row justify-between'>
+              <div className='flex flex-col lg:flex-row gap-4 justify-between'>
                 <div className="w-full lg:w-1/3 mb-4">
                   <TextField
                     value={searchTerm}
@@ -79,29 +73,40 @@ const Productshomepage = ({ products }) => {
                     onClearButtonClick={handleClearSearch}
                   />
                 </div>
-                <div className='flex flex-row items-center gap-4'>
+                <div className='flex flex-col lg:flex-row items-center gap-4'>
                   <span className='text-lg font-medium'>Filter:</span>
-                  <ButtonGroup variant="segmented">
-                    <Button pressed={filter === 'all'} onClick={() => handleFilterChange('all')}>All</Button>
-                    <Button pressed={filter === 'brand new'} onClick={() => handleFilterChange('brand new')}>Brand New</Button>
-                    <Button pressed={filter === 'used'} onClick={() => handleFilterChange('used')}>Used</Button>
-                    <Button pressed={filter === 'like new'} onClick={() => handleFilterChange('like new')}>Like new</Button>
+                  <ButtonGroup variant="segmented" >
+                    <Button pressed={filter === 'all'}  onClick={() => handleFilterChange('all')}><span style={{fontSize:'16px!important'}}>All</span></Button>
+                    <Button pressed={filter === 'brand new'} onClick={() => handleFilterChange('brand new')}><span style={{fontSize:'16px!important'}}>Brand New</span></Button>
+                    <Button pressed={filter === 'used'} onClick={() => handleFilterChange('used')}><span style={{fontSize:'16px!important'}}>Used</span></Button>
+                    <Button pressed={filter === 'like new'} onClick={() => handleFilterChange('like new')}><span style={{fontSize:'16px!important'}}>Like New</span></Button>
                   </ButtonGroup>
                 </div>
               </div>
             </div>
             <div className="flex flex-wrap gap-10 justify-center">
-              {currentProducts.map(product => (
-                <Link href={`/products/${product.slug}`} key={product.name}>
-                  <Productcard
-                    productTitle={product.name}
-                    productDescription={product.description}
-                    image={product.image}
-                    initialStock={product.instock}
-                    condition={product.condition}
-                  />
-                </Link>
-              ))}
+              {currentProducts.length > 0 ? (
+                currentProducts.map(product => (
+                  <Link href={`/products/${product.slug}`} key={product.name}>
+                    <Productcard
+                      productTitle={product.name}
+                      productDescription={product.description}
+                      image={product.image}
+                      initialStock={product.instock}
+                      condition={product.condition}
+                    />
+                  </Link>
+                ))
+              ) : (
+               <div className='flex flex-col gap-4 items-center'> 
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#B0BBC9" className="size-22">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+</svg>
+
+
+               <p className="text-center text-xl">No Results Found</p>
+               </div>
+              )}
             </div>
             {/* Pagination */}
             <div className="flex justify-center mt-8">
@@ -116,7 +121,7 @@ const Productshomepage = ({ products }) => {
           </div>
         </div>
       </section>
-      
+
       <Footer />
     </>
   );

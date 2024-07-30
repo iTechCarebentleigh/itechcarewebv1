@@ -113,10 +113,10 @@ export default function Header() {
             </a> */}
             <Link className="text-lg"
  href="/products">Product Listings</Link>
-            <Button>Call Now: +61 9191 2669</Button>
+            <Button>Call Now: 0490125225</Button>
           </div>
           <div className="block lg:hidden items-center">
-            <p className="text-3xl text-center">+61 9191 2669</p>
+            <p className="text-3xl text-center">0490125225</p>
           </div>
         </div>
       </header>

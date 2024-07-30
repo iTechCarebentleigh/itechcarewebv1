@@ -28,7 +28,7 @@ const ProductPage = ({ product }) => {
   }
 
   const handleCall = () => {
-    window.location.href = 'tel:+6191912669';
+    window.location.href = 'tel:0490125225';
   };
 
   const breadcrumbLinks = [
@@ -131,7 +131,7 @@ const ProductPage = ({ product }) => {
                     {inStock ? <div className='flex flex-col gap-4 items-start'>
                       <div className='flex flex-row gap-4 items-center'>
                     <h6>Buy now:</h6>
-                    <Button size="medium" onClick={handleCall}>Call: +61 9191 2669</Button></div>
+                    <Button size="medium" onClick={handleCall}>Call: 0490125225</Button></div>
                     <div className='w-full flex flex-col text-center'>Or</div>
 
                     <Usersform />

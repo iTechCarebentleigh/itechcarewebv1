@@ -8,12 +8,15 @@ import Head from "next/head";
 import {Button} from '@shopify/polaris';
 import Link from "next/link";
 import { client } from '../../sanity/lib/client'
+import { urlForImage } from "./../../sanity/lib/image";
+import Marquee from 'react-fast-marquee';
+
 
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({products}) {
-
+export default function Home({products,shopImages}) {
+console.log(shopImages)
 
 
 
@@ -367,9 +370,9 @@ export default function Home({products}) {
 </div>
 </div>
 </section>
-<section className="bg-white px-4" id="address-section">
+<section className="bg-white " id="address-section">
 <div className="flex gap-16 py-24 container flex-col xl:flex-row    mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
-  <div className=" w-full xl:w-1/2 justify-start flex flex-col gap-8">
+  <div className=" w-full xl:w-1/2 px-4 justify-start flex flex-col gap-8">
   <h2 className="text-4xl w-fit">Close to You
     <span className="block">  Like Always</span>
    </h2>
@@ -404,6 +407,7 @@ export default function Home({products}) {
 
     </ul>
    </div>
+  
 
 
   </div>
@@ -417,6 +421,23 @@ export default function Home({products}) {
   referrerPolicy="no-referrer-when-downgrade"
 />
 </div>
+</div>
+<div className="w-full py-4 bg-gray-50"> 
+   <Marquee gradient={false} speed={50} className="w-full">
+    <div className="flex flex-row">
+   {shopImages.map(shop => {
+    return (
+      <img 
+      className="rounded-md mr-4 w-60 h-52 lg:w-96 lg:h-80 "
+        src={urlForImage(shop.image).url()} 
+        key={shop.id} // Make sure to use a unique identifier
+        // style={{height: '420px', width: '480px'}} 
+        alt="Shop Image" // Add alt text for accessibility
+      />
+    );
+  })}</div>
+    </Marquee>
+
 </div>
 </section>
 <section  id="contact-section" className="bg-white px-4">
@@ -439,7 +460,7 @@ export default function Home({products}) {
 
 
 export async function getServerSideProps() {
-  const query = `*[
+  const queryProduct = `*[
     _type=="Product" 
    ] | order(_createdAt desc){
      name,
@@ -450,11 +471,20 @@ export async function getServerSideProps() {
      "slug":slug.current
    }`;
 
-  const products = await client.fetch(query);
+    const queryimage = `*[
+    _type=="shopImages" 
+   ] | order(_createdAt desc){
+     image,
+   
+}`;
+
+  const products = await client.fetch(queryProduct);
+  const shopImages = await client.fetch(queryimage);
 
   return {
     props: {
       products,
+      shopImages
     },
   };
 }
