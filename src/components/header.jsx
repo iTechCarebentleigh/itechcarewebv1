@@ -111,8 +111,8 @@ export default function Header() {
             >
               contact
             </a> */}
-            <a className="text-lg"
- href="/products">Product Listings</a>
+            <Link className="text-lg"
+ href="/products">Product Listings</Link>
             <Button>Call Now: +61 9191 2669</Button>
           </div>
           <div className="block lg:hidden items-center">

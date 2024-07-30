@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-const Countdown = ({setIsCompleted,isCompleted}) => {
+const Countdown = ({ setIsCompleted, isCompleted }) => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
     const targetDate = new Date('August 1, 2024 00:00:00').getTime();
-    // const targetDate = new Date('July 5, 2024 20:37:00').getTime();
-
 
     const countdown = () => {
       const now = new Date().getTime();
@@ -29,7 +27,7 @@ const Countdown = ({setIsCompleted,isCompleted}) => {
     const intervalId = setInterval(countdown, 1000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [setIsCompleted]); // Include setIsCompleted in the dependency array
 
   return (
     <div>
@@ -59,7 +57,6 @@ const Countdown = ({setIsCompleted,isCompleted}) => {
           </div>
         </div>
       )}
-      
     </div>
   );
 };
