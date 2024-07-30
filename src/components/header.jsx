@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="h-fit lg:min-h-16 gap-2 py-2 lg:py-0 fixed w-full z-50 flex flex-col lg:flex-row px-6 text-white items-center justify-between bg-gray-950">
+      <header className="h-fit lg:min-h-16 gap-2 py-2 lg:py-0  w-full z-50 flex flex-col lg:flex-row px-6 text-white items-center justify-between bg-gray-950 fixed">
         <div className="logo-container">
         <Link href={'/'}>
         <svg
@@ -91,7 +91,7 @@ export default function Header() {
         </div>
         <div className="flex flex-row gap-8 ">
           <div className="hidden lg:flex flex-row gap-16 items-center">
-            <a
+            {/* <a
               href="#about"
               className="text-lg"
               onClick={(e) => {
@@ -110,7 +110,9 @@ export default function Header() {
               }}
             >
               contact
-            </a>
+            </a> */}
+            <a className="text-lg"
+ href="/products">Product Listings</a>
             <Button>Call Now: +61 9191 2669</Button>
           </div>
           <div className="block lg:hidden items-center">

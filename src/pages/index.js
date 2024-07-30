@@ -3,14 +3,17 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 // import { collection, addDoc, getDocs } from "firebase/firestore"; 
 // import { db } from "../../firebase";
-import { Usersform,Header,Countdown,Footer } from "@/components";
+import { Usersform,Header,Countdown,Footer,Productcard } from "@/components";
 import Head from "next/head";
 import {Button} from '@shopify/polaris';
+import Link from "next/link";
+import { client } from '../../sanity/lib/client'
 
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Home({products}) {
+
 
 
 
@@ -29,7 +32,7 @@ export default function Home() {
     </Head>
     <main >
 <Header/>
-<section className=" xl:h-screen px-4 ">
+<section className=" xl:h-screen px-4 py-0 ">
 <div className="flex gap-4 container flex-col justify-center	  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
 <div className="flex flex-col h-fit  gap-12">
   <div className="w-full lg:max-w-2xl  flex flex-col gap-8">
@@ -176,6 +179,36 @@ export default function Home() {
 </defs>
 </svg>
 
+
+   </div>
+
+  </div>
+</div>
+</section>
+
+<section className="bg-slate-50 px-4">
+<div className="flex gap-4 container flex-col justify-start	items-start  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
+  <div className="py-24 w-full justify-center flex flex-col gap-16">
+  <div className="flex flex-row justify-between">
+    <h2 className="text-4xl text-left w-fit">Featured Postings</h2>
+    <Link href="products">
+    <Button className="w-fit" size="medium" variant="plain">View all</Button>
+    </Link>
+    </div>
+   <div className="flex flex-wrap gap-10 justify-center  ">
+   {products.slice(0, 4).map(product => (
+  <Link href={`/products/${product.slug}`} key={product.slug} passHref>
+  
+      <Productcard
+        productTitle={product.name}
+        productDescription={product.description}
+        image={product.image}
+        initialStock={product.instock}
+        condition={product.condition}
+      />
+ 
+  </Link>
+))}
 
    </div>
 
@@ -402,4 +435,26 @@ export default function Home() {
     </main>
     </>
   );
+}
+
+
+export async function getServerSideProps() {
+  const query = `*[
+    _type=="Product" 
+   ] | order(_createdAt desc){
+     name,
+     "description":description[0].children[0].text,
+     condition,
+     image,
+     instock,
+     "slug":slug.current
+   }`;
+
+  const products = await client.fetch(query);
+
+  return {
+    props: {
+      products,
+    },
+  };
 }

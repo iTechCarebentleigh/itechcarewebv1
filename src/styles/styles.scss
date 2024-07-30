@@ -4,6 +4,10 @@ body {
     font-family: 'Clash Grotesk', sans-serif;
 }
 
+button{
+  // font-family: "Clash Grotesk"!important;
+
+}
 h1{
 font-family: "Clash Grotesk";
 
@@ -12,7 +16,12 @@ font-weight: 400;
 
 text-transform: capitalize;
 }
-
+.Polaris-Badge{
+  padding: 4px 8px;
+  span{
+    font-size: 12px;
+  }
+}
 
 .Polaris-Button--variantPrimary {
     background: var(--itc-Colors-Button-Primary-Gradient);
@@ -61,3 +70,32 @@ span{
     min-width: 54px;
 }
 
+/* CSS for magnifying glass effect */
+.magnifier-container {
+  position: relative;
+  width: 100%;
+  max-width: 504px; /* Adjust as needed */
+}
+.breadcrumb {
+  padding: 16px 0;
+  font-size: 14px;
+}
+
+
+.magnifier {
+  position: absolute;
+  border: 3px solid #fff; /* Adjust border color and width as needed */
+  border-radius: 50%;
+  cursor: zoom-in;
+  width: 140px!important; /* Adjust magnifier size */
+  height: 140px!important; /* Adjust magnifier size */
+  visibility: hidden;
+  transform: translate(-12%,-13%);
+  pointer-events: none;
+  box-shadow: 0 0 20px rgba(26, 26, 29, 0.222);
+  background-repeat: no-repeat;
+}
+
+.magnifier-container:hover .magnifier {
+  visibility: visible;
+}
