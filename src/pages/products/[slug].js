@@ -9,7 +9,7 @@ import { TextContainer,TextField, ButtonGroup, Button, Icon , Frame, Modal} from
 import Image from 'next/image';
 
 const ProductPage = ({ product }) => {
-  const [inStock, setInStock] = useState(product.instock);
+  const [inStock, setInStock] = useState(product?.instock ?? false);
   const router = useRouter();
   const imageRef=useRef();
   const [active, setActive] = useState(false);
