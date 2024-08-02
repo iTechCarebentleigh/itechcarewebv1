@@ -91,26 +91,6 @@ export default function Header() {
         </div>
         <div className="flex flex-row gap-8 ">
           <div className="hidden lg:flex flex-row gap-16 items-center">
-            {/* <a
-              href="#about"
-              className="text-lg"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("about-section");
-              }}
-            >
-              about
-            </a>
-            <a
-              href="#contact"
-              className="text-lg"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("contact-section");
-              }}
-            >
-              contact
-            </a> */}
             <Link className="text-lg"
  href="/products">Product Listings</Link>
             <Button>Call Now: 0490125225</Button>

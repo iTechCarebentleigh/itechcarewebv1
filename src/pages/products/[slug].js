@@ -16,9 +16,7 @@ const ProductPage = ({ product }) => {
 
   const handleChange = useCallback(() => 
   {
-    console.log("closed")
     setActive(!active), [active]
-
   }
 );
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 // import { collection, addDoc, getDocs } from "firebase/firestore"; 
 // import { db } from "../../firebase";
-import { Usersform,Header,Countdown,Footer,Productcard } from "@/components";
+import { Usersform,Header,Footer,Productcard } from "@/components";
 import Head from "next/head";
 import {Button} from '@shopify/polaris';
 import Link from "next/link";
@@ -16,7 +16,6 @@ import Marquee from 'react-fast-marquee';
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({products,shopImages}) {
-console.log(shopImages)
 
 
 
@@ -26,7 +25,6 @@ console.log(shopImages)
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const [isCompleted, setIsCompleted] = useState(false);
 
   return (
     <>
@@ -70,18 +68,12 @@ console.log(shopImages)
       }}>Visit us Today</Button>
     </div>
   </div>
-  <div className="w-full lg:max-w-2xl">
-   
-<Countdown isCompleted={isCompleted} setIsCompleted={setIsCompleted}/>
-  </div>
+
 </div>
 <div className=" xl:absolute right-0 bottom-0 w-full  xl:md:w-5/12">
 <div className="w-full relative">
 <img  src="/static-images/hero-banner.png" alt="hero-image"/>
-{!isCompleted &&
-  <img className="w-1/4 absolute top-8 right-24 md:right-40" src="/static-images/promo-sticker.png" alt="promo"/>
 
-}
 </div>
 </div>
 </div>

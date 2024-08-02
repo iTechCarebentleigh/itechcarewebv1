@@ -16,6 +16,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  /* color: var(--p-color-bg-surface-success); */
 
 }
 
