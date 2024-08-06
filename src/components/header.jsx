@@ -9,10 +9,13 @@ export default function Header() {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+  const handleCall = () => {
+    window.location.href = 'tel:+610490125225';
+  };
 
   return (
     <>
-      <header className="h-fit lg:min-h-16 gap-2 py-2 lg:py-0  w-full z-50 flex flex-col lg:flex-row px-6 text-white items-center justify-between bg-gray-950 fixed">
+      <header className="h-fit lg:min-h-16 gap-6 py-2 lg:py-0  w-full z-50 flex flex-col lg:flex-row px-6 text-white items-center justify-between bg-gray-950 fixed">
         <div className="logo-container">
         <Link href={'/'}>
         <svg
@@ -90,14 +93,12 @@ export default function Header() {
       
         </div>
         <div className="flex flex-row gap-8 ">
-          <div className="hidden lg:flex flex-row gap-16 items-center">
-            <Link className="text-lg"
+          <div className="flex flex-row gap-16 items-center">
+            <Link className="hidden lg:flex text-lg text-semantic-action-500 hover:underline"
  href="/products">Product Listings</Link>
-            <Button>Call Now: 0490125225</Button>
+            <Button onClick={handleCall}>Call Now: 0490125225</Button>
           </div>
-          <div className="block lg:hidden items-center">
-            <p className="text-3xl text-center">0490125225</p>
-          </div>
+        
         </div>
       </header>
     </>

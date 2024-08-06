@@ -14,6 +14,7 @@ const ProductPage = ({ product }) => {
   const imageRef=useRef();
   const [active, setActive] = useState(false);
 
+
   const handleChange = useCallback(() => 
   {
     setActive(!active), [active]
@@ -26,7 +27,7 @@ const ProductPage = ({ product }) => {
   }
 
   const handleCall = () => {
-    window.location.href = 'tel:0490125225';
+    window.location.href = 'tel:+610490125225';
   };
 
   const breadcrumbLinks = [

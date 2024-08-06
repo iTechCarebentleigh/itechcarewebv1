@@ -132,7 +132,7 @@ export async function getServerSideProps() {
     _type=="Product" 
    ] | order(_createdAt desc){
      name,
-     "description":description[0].children[0].text,
+    description,
      condition,
      image,
      instock,

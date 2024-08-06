@@ -18,6 +18,7 @@ module.exports = {
             "600":"var(--itc-Colors-Semantic-Primary-600)"
           },
           action:{
+            '500':'var(--itc-Colors-Semantic-Action-500)',
             '600':'var(--itc-Colors-Semantic-Action-600)'
           }
         }
