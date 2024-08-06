@@ -76,48 +76,50 @@ const ProductPage = ({ product }) => {
               <div className='w-full lg:w-1/2 flex flex-col gap-16'>
                 <div className='flex flex-col gap-8'>
                   <h6>Description:</h6>
-                  <PortableText
-                    value={product.description}
-                    components={{
-                      block: {
-                        h1: ({ children }) => <h1 className="text-4xl font-bold">{children}</h1>,
-                        h2: ({ children }) => <h2 className="text-3xl font-bold">{children}</h2>,
-                        normal: ({ children }) => <p className="text-base whitespace-pre-wrap text-slate-500">{children}</p>,
-                      },
-                      list: {
-                        bullet: ({ children }) => <ul className="list-disc ml-5 flex flex-col gap-4">{children}</ul>,
-                        number: ({ children }) => <ol className="list-decimal ml-5 flex flex-col gap-4">{children}</ol>,
-                      },
-                      listItem: {
-                        bullet: ({ children }) => <li className="text-base text-slate-500">{children}</li>,
-                        number: ({ children }) => <li className="text-base text-slate-500">{children}</li>,
-                      },
-                      marks: {
-                        strong: ({ children }) => <strong>{children}</strong>,
-                        em: ({ children }) => <em>{children}</em>,
-                        link: ({ value, children }) => {
-                          const { href } = value;
-                          return <a href={href} className="text-blue-500 underline">{children}</a>;
+                  <div className='flex flex-col gap-0'>
+                    <PortableText
+                      value={product.description}
+                      components={{
+                        block: {
+                          h1: ({ children }) => <h1 className="text-4xl font-bold">{children}</h1>,
+                          h2: ({ children }) => <h2 className="text-3xl font-bold">{children}</h2>,
+                          normal: ({ children }) => <p className="text-base whitespace-pre-wrap text-slate-500">{children}</p>,
                         },
-                      },
-                      types: {
-                        image: ({ value }) => {
-                          return (
-                            <div className="relative w-full h-64">
-                              <Image
-                                src={urlForImage(value.asset).url()}
-                                alt={value.alt || 'Image'}
-                                layout="fill"
-                                objectFit="cover"
-
-                                className="w-full h-fit"
-                              />
-                            </div>
-                          );
+                        list: {
+                          bullet: ({ children }) => <ul className="list-disc ml-5 flex flex-col gap-4">{children}</ul>,
+                          number: ({ children }) => <ol className="list-decimal ml-5 flex flex-col gap-4">{children}</ol>,
+                        },
+                        listItem: {
+                          bullet: ({ children }) => <li className="text-base text-slate-500">{children}</li>,
+                          number: ({ children }) => <li className="text-base text-slate-500">{children}</li>,
+                        },
+                        marks: {
+                          strong: ({ children }) => <strong>{children}</strong>,
+                          em: ({ children }) => <em>{children}</em>,
+                          link: ({ value, children }) => {
+                            const { href } = value;
+                            return <a href={href} className="text-blue-500 underline">{children}</a>;
+                          },
+                        },
+                        types: {
+                          image: ({ value }) => {
+                            return (
+                              <div className="relative w-full h-64">
+                                <Image
+                                  src={urlForImage(value.asset).url()}
+                                  alt={value.alt || 'Image'}
+                                  layout="fill"
+                                  objectFit="cover"
+  
+                                  className="w-full h-fit"
+                                />
+                              </div>
+                            );
+                          }
                         }
-                      }
-                    }}
-                  />
+                      }}
+                    />
+                  </div>
                 </div>
                 <div className='flex flex-col gap-8'>
                   <div className='flex flex-row gap-4 '>
