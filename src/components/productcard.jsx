@@ -93,22 +93,7 @@ export default function Productcard({ productTitle, productDescription, initialS
                           return <a href={href} className="text-blue-500 underline">{children}</a>;
                         },
                       },
-                      types: {
-                        image: ({ value }) => {
-                          return (
-                            <div className="relative w-full h-64">
-                              <Image
-                                src={urlForImage(value.asset).url()}
-                                alt={value.alt || 'Image'}
-                                layout="fill"
-                                objectFit="cover"
-
-                                className="w-full h-fit"
-                              />
-                            </div>
-                          );
-                        }
-                      }
+                    
                     }}
                   /></div>
                        
