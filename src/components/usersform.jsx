@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, serverTimestamp } from "firebase/firestore"; // Add serverTimestamp
 import { db } from "../../firebase";
 import { Button, TextField, Banner } from '@shopify/polaris';
 import Link from "next/link";
@@ -66,19 +66,19 @@ export default function Usersform() {
         email: newUser.email.trim(),
         phone: newUser.phone,
         message: newUser.message.trim(),
+        createdAt: serverTimestamp() // Add timestamp field here
       });
       setUsers([...users, newUser]);
 
       // Send email using EmailJS
       emailjs
-      .send('service_2mosnk6', 'template_tkz4tmd', {
-        from_name: name,
-        from_email: email,
-        from_phone:phone,
-        to_email: 'itechcare.bentleigh@gmail.com',
-        message: message,
-      }, 'SqojNqjknrKhiwoOj')
-      
+        .send('service_y31ktku', 'template_tkz4tmd', {
+          from_name: name,
+          from_email: email,
+          from_phone: phone,
+          to_email: 'itechcare.bentleigh@gmail.com',
+          message: message,
+        }, 'SqojNqjknrKhiwoOj');
 
       setName("");
       setEmail("");
