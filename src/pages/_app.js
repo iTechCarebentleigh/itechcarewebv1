@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/react"
 
 export default function App({ Component, pageProps }) {
   return <AppProvider i18n={translations}>
+    <Analytics/>
   <Component {...pageProps} />
 </AppProvider>;
 }
