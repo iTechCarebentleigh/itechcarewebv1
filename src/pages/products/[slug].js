@@ -36,6 +36,9 @@ const ProductPage = ({ product }) => {
     { text: product.name },
   ];
 
+    console.log(product)
+
+
   return (
     <>
       <Head>
@@ -77,48 +80,71 @@ const ProductPage = ({ product }) => {
                 <div className='flex flex-col gap-8'>
                   <h6>Description:</h6>
                   <div className='flex flex-col gap-0'>
-                    <PortableText
-                      value={product.description}
-                      components={{
-                        block: {
-                          h1: ({ children }) => <h1 className="text-4xl font-bold">{children}</h1>,
-                          h2: ({ children }) => <h2 className="text-3xl font-bold">{children}</h2>,
-                          normal: ({ children }) => <p className="text-base whitespace-pre-wrap text-slate-500">{children}</p>,
-                        },
-                        list: {
-                          bullet: ({ children }) => <ul className="list-disc ml-5 flex flex-col gap-4">{children}</ul>,
-                          number: ({ children }) => <ol className="list-decimal ml-5 flex flex-col gap-4">{children}</ol>,
-                        },
-                        listItem: {
-                          bullet: ({ children }) => <li className="text-base text-slate-500">{children}</li>,
-                          number: ({ children }) => <li className="text-base text-slate-500">{children}</li>,
-                        },
-                        marks: {
-                          strong: ({ children }) => <strong>{children}</strong>,
-                          em: ({ children }) => <em>{children}</em>,
-                          link: ({ value, children }) => {
-                            const { href } = value;
-                            return <a href={href} className="text-blue-500 underline">{children}</a>;
-                          },
-                        },
-                        types: {
-                          image: ({ value }) => {
-                            return (
-                              <div className="relative w-full h-64">
-                                <Image
-                                  src={urlForImage(value.asset).url()}
-                                  alt={value.alt || 'Image'}
-                                  layout="fill"
-                                  objectFit="cover"
-  
-                                  className="w-full h-fit"
-                                />
-                              </div>
-                            );
-                          }
-                        }
-                      }}
-                    />
+                  <PortableText
+  value={product.description}
+  components={{
+    block: {
+      h1: ({ children }) => <h1 className="text-4xl font-bold">{children}</h1>,
+      h2: ({ children }) => <h2 className="text-3xl font-bold">{children}</h2>,
+      normal: ({ children }) => {
+        // Flattening children and replacing <br/> with actual React elements
+        const formattedChildren = children.flatMap((child, index) => {
+          if (typeof child === 'string') {
+            // Split the string by <br/> and map to React elements
+            return child.split(/<br\s*\/?>/i).map((part, i) => (
+              <>
+                {part}
+                {i < child.split(/<br\s*\/?>/i).length - 1 && <br key={`br-${index}-${i}`} />} {/* Insert <br /> only if it's not the last part */}
+              </>
+            ));
+          }
+          return child; // Return non-string children as-is
+        });
+
+        return (
+          <p className="text-base whitespace-pre-wrap text-slate-500">
+            {formattedChildren}
+          </p>
+        );
+      },
+    },
+    list: {
+      bullet: ({ children }) => <ul className="list-disc ml-5 flex flex-col gap-2">{children}</ul>,
+      number: ({ children }) => <ol className="list-decimal ml-5 flex flex-col gap-2">{children}</ol>,
+    },
+    listItem: {
+      bullet: ({ children }) => <li className="text-base text-slate-500">{children}</li>,
+      number: ({ children }) => <li className="text-base text-slate-500">{children}</li>,
+    },
+    marks: {
+      strong: ({ children }) => <strong>{children}</strong>,
+      em: ({ children }) => <em>{children}</em>,
+      link: ({ value, children }) => {
+        const { href } = value;
+        return <a href={href} className="text-blue-500 underline">{children}</a>;
+      },
+    },
+    types: {
+      image: ({ value }) => {
+        return (
+          <div className="relative w-full" style={{ paddingBottom: '24px' }}>
+            <Image
+              src={urlForImage(value.asset).url()}
+              alt={value.alt || 'Image'}
+              layout="responsive"
+              width={1920}
+              height={1080}
+              objectFit="contain"
+              className="w-[200px] h-auto"
+            />
+          </div>
+        );
+      },
+    },
+  }}
+/>
+
+
                   </div>
                 </div>
                 <div className='flex flex-col gap-8'>

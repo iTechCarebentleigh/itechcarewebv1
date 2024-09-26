@@ -51,9 +51,10 @@ export default function Productcard({ productTitle, productDescription, initialS
                             style={{
                                 lineHeight: '100%',
                                 display: '-webkit-box',
-                                WebkitLineClamp: 2, // Adjust the number of lines to your needs
+                                WebkitLineClamp: 3, // Adjust the number of lines to your needs
                                 WebkitBoxOrient: 'vertical',
                                 overflow: 'hidden',
+                                height:'auto',
                                 textOverflow: 'ellipsis',
                             }}
                             className="font-medium text-sm lg:text-lg"
@@ -77,14 +78,7 @@ export default function Productcard({ productTitle, productDescription, initialS
                         h2: ({ children }) => <h2 className="text-3xl font-bold">{children}</h2>,
                         normal: ({ children }) => <p className="text-xs lg:text-base whitespace-pre-wrap text-slate-500">{children}</p>,
                       },
-                      list: {
-                        bullet: ({ children }) => <ul className="list-disc ml-5 flex flex-col gap-4">{children}</ul>,
-                        number: ({ children }) => <ol className="list-decimal ml-5 flex flex-col gap-4">{children}</ol>,
-                      },
-                      listItem: {
-                        bullet: ({ children }) => <li className="text-xs lg:text-base text-slate-500">{children}</li>,
-                        number: ({ children }) => <li className="text-xs lg:text-base text-slate-500">{children}</li>,
-                      },
+                    
                       marks: {
                         strong: ({ children }) => <strong>{children}</strong>,
                         em: ({ children }) => <em>{children}</em>,
