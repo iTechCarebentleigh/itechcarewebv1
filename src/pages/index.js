@@ -3,19 +3,21 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 // import { collection, addDoc, getDocs } from "firebase/firestore"; 
 // import { db } from "../../firebase";
-import { Usersform,Header,Footer,Productcard } from "@/components";
+import { Usersform,Header,Footer,Productcard,Reviews } from "@/components";
 import Head from "next/head";
 import {Button} from '@shopify/polaris';
 import Link from "next/link";
 import { client } from '../../sanity/lib/client'
 import { urlForImage } from "./../../sanity/lib/image";
 import Marquee from 'react-fast-marquee';
-
+import Devices from "@/components/brandsandmodels";
+import Inventory from '@/components/inventory';
+import FAQ from "@/components/faq";
 
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({products,shopImages}) {
+export default function Home({products,shopImages,faqs}) {
 
 
 
@@ -305,7 +307,7 @@ export default function Home({products,shopImages}) {
   </div>
 </div>
 </section>
-<section id="about-section" className="bg-semantic-primary-600 px-4  relative">
+<section id="about-section" className="bg-[var(--colors-brand-primary-600)] px-4  relative">
   <img src="/static-images/logo-big.png" className="w-96 hidden xl:block absolute -top-32 right-0"/>
 <div className="flex gap-4 container flex-col 	items-start  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
 <div className="py-24 flex flex-col gap-24">
@@ -422,7 +424,7 @@ export default function Home({products,shopImages}) {
       <img 
       className="rounded-md mr-4 w-60 h-52 lg:w-96 lg:h-80 "
         src={urlForImage(shop.image).url()} 
-        key={shop.id} // Make sure to use a unique identifier
+        key={shop.image.asset._ref} // Make sure to use a unique identifier
         // style={{height: '420px', width: '480px'}} 
         alt="Shop Image" // Add alt text for accessibility
       />
@@ -432,6 +434,7 @@ export default function Home({products,shopImages}) {
 
 </div>
 </section>
+<Reviews/>
 <section  id="contact-section" className="bg-white px-4">
 <div className="flex gap-16 py-24 container flex-col xl:flex-row  justify-center items-center  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className="w-full md:w-4/5 lg:w-2/5  justify-center items-center flex flex-col gap-8">
@@ -444,6 +447,9 @@ export default function Home({products,shopImages}) {
 
 </div>
 </section>
+{/* <Devices/>
+<Inventory/> */}
+<FAQ faqs={faqs}/>
 <Footer/>
     </main>
     </>
@@ -470,13 +476,16 @@ export async function getServerSideProps() {
    
 }`;
 
+const queryfaqs = `*[_type == "faqs"]`;
   const products = await client.fetch(queryProduct);
   const shopImages = await client.fetch(queryimage);
+  const faqs = await client.fetch(queryfaqs);
 
   return {
     props: {
       products,
-      shopImages
+      shopImages,
+      faqs
     },
   };
 }
