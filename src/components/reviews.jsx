@@ -127,7 +127,7 @@ const Reviews = () => {
                   <SwiperSlide key={index} className='overflow-hidden p-6 bg-zinc-900 rounded-xl'>
                     <div className='flex flex-col h-[220px] gap-4'>
                     <p className="text-base text-white h-2/3 overflow-hidden w-full line-clamp-6 pointer-events-none">
-        "{review.text}"
+        {review.text}
       </p>                    <div className="flex flex-row items-center gap-4">
                         {/* Display the profile photo */}
                         {review.profile_photo_url && (
