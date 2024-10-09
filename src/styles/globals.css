@@ -107,3 +107,31 @@ button{
     @apply bg-background text-foreground;
   }
 }
+
+
+.arco-cascader-list{
+  max-height: fit-content!important;
+  
+}
+
+.arco-cascader-list-wrapper, .arco-cascader-list-column, .arco-cascader-popup-inner{
+  height: fit-content!important;
+
+}
+
+
+.arco-cascader .arco-cascader-view{
+background-color: transparent!important;
+border:none!important;
+padding:2px 4px!important;
+border-radius: 8px!important;
+}
+
+.arco-cascader :hover{
+  background-color: var(--colors-palette-zinc-800)!important;
+  }
+
+.arco-cascader .arco-cascader-view svg{
+  color:var(--colors-white);
+  
+}

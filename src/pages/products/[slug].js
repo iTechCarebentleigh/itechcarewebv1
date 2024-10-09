@@ -44,7 +44,6 @@ const ProductPage = ({ product }) => {
       <Head>
         <title>{product.name}</title>
       </Head>
-      <Header />
       <main>
         <section className='w-full bg-slate-50'>
           <div className="flex gap-4 gap-28 py-16 container flex-col justify-center mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">

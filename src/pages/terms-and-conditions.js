@@ -21,7 +21,7 @@ export default function Termsandconditions() {
     </Head>
     <main >
     <div className="logo-container flex py-4 justify-center bg-slate-50">
-   <Link href={'/'}>
+   {/* <Link href={'/'}>
         <svg
       width={218}
       height={44}
@@ -93,7 +93,7 @@ export default function Termsandconditions() {
         </clipPath>
       </defs>
     </svg>
-   </Link>
+   </Link> */}
 
 </div>
 <section className="bg-slate-50 px-4">

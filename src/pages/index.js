@@ -13,6 +13,7 @@ import Marquee from 'react-fast-marquee';
 import Devices from "@/components/brandsandmodels";
 import Inventory from '@/components/inventory';
 import FAQ from "@/components/faq";
+import Herocarousel from "@/components/herocarousel";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -34,8 +35,7 @@ export default function Home({products,shopImages,faqs}) {
       <title>iTech Care-Top Repairs, Quality Accessories</title>
     </Head>
     <main >
-<Header/>
-<section className=" xl:h-screen px-4 py-0 ">
+{/* <section className=" xl:h-screen px-4 py-0 ">
 <div className="flex gap-4 container flex-col justify-center	  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
 <div className="flex flex-col h-fit  gap-12">
   <div className="w-full lg:max-w-2xl  flex flex-col gap-8">
@@ -79,7 +79,8 @@ export default function Home({products,shopImages,faqs}) {
 </div>
 </div>
 </div>
-</section>
+</section> */}
+<Herocarousel/>
 <section className="bg-white px-4">
 <div className="flex gap-4 container flex-col justify-center	items-center  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className="py-24 w-full justify-center flex flex-col gap-16">
@@ -312,12 +313,18 @@ export default function Home({products,shopImages,faqs}) {
 <div className="flex gap-4 container flex-col 	items-start  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
 <div className="py-24 flex flex-col gap-24">
   <div className=" w-full xl:w-3/5 justify-start flex flex-col gap-10">
-    <h2 className="text-4xl w-fit text-white">Who We Are?
-    <span className="block">Or What Just Makes Us Different</span>
-     </h2>
-     <p className="text-lg lg:text-2xl	text-zinc-300">At iTech Care, we offer expert repair services for all kinds of mobile phones, including cracked screens, water damage, charging issues, and more. </p>
+<div className="flex flex-col gap-5">
+      <h2 className="text-4xl w-fit text-white">Who We Are?
+      <span className="block">Or What Just Makes Us Different</span>
+       </h2>
+       <p className="text-lg lg:text-2xl	text-zinc-300">At iTech Care, we offer expert repair services for all kinds of mobile phones, including cracked screens, water damage, charging issues, and more. </p>
+</div>
+     <Link href={'/repairs'}>
+       <Button >Explore Repairs</Button>
+  
+</Link> 
      </div>
-     <div className="flex flex-wrap gap-4 justify-center items-center  px-4">
+    <div className="flex flex-wrap gap-4 justify-center items-center  px-4">
      <div className="h-96 w-80 items-center p-4 flex flex-col gap-4">
       <div className="h-3/5 flex justify-center"><img  src="/static-images/specials/screencrack.png" alt="screencrack"/></div>
       <div className="flex flex-col gap-4 text-white">
