@@ -8,6 +8,7 @@ import { Global, css } from '@emotion/react';
 import {
   CartIcon
 } from '@shopify/polaris-icons';
+import Image from 'next/image';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -100,7 +101,9 @@ const Herocarousel = () => {
   {/* Slide 1 */}
   <SwiperSlide className="h-full w-full    lg:px-0 flex flex-col justify-center relative">
     {/* Background Image for Slide 1 */}
-    <img
+    <Image
+    width={10000}
+    height={10000}
       src="/static-images/hero1.png"
       className="w-full h-full absolute object-cover "
       style={{ zIndex: 0, top: 0, left: 0 }}
@@ -135,7 +138,9 @@ const Herocarousel = () => {
   {/* Slide 2 */}
   <SwiperSlide className="h-full w-full    lg:px-0 flex flex-col justify-center relative">
     {/* Background Image for Slide 2 */}
-    <img
+    <Image
+      width={10000}
+      height={10000}
       src="/static-images/hero2.png"
       className="w-full h-full absolute object-cover "
       style={{ zIndex: 0, top: 0, left: 0 }}
@@ -170,8 +175,10 @@ const Herocarousel = () => {
    {/* Slide 3 */}
    <SwiperSlide className="h-full w-full    lg:px-0 flex flex-col justify-center relative">
     {/* Background Image for Slide 2 */}
-    <img
+    <Image
       src="/static-images/hero3.png"
+      width={10000}
+      height={10000}
       className="w-full h-full absolute object-cover "
       style={{ zIndex: 0, top: 0, left: 0 }}
     />

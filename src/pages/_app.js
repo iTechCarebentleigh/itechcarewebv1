@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }) {
 
   //   gsap.ticker.lagSmoothing(0);
   // }, []);
-
+ 
   return (
     <AppProvider i18n={translations}>
       <Analytics />

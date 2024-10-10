@@ -49,7 +49,7 @@ export default function Usersform() {
   };
 
   // Add user to state
-  const addUsers = async (e) => {
+  const sendMessage = async (e) => {
     e.preventDefault();
     const errors = validateFields();
     if (Object.keys(errors).length > 0) {
@@ -58,17 +58,17 @@ export default function Usersform() {
     }
 
     setSending(true);
-    const newUser = { name, email, phone, message };
+    const newMessage = { name, email, phone, message };
 
     try {
-      await addDoc(collection(db, 'Users'), {
-        name: newUser.name.trim(),
-        email: newUser.email.trim(),
-        phone: newUser.phone,
-        message: newUser.message.trim(),
+      await addDoc(collection(db, 'Messages'), {
+        name: newMessage.name.trim(),
+        email: newMessage.email.trim(),
+        phone: newMessage.phone,
+        message: newMessage.message.trim(),
         createdAt: serverTimestamp() // Add timestamp field here
       });
-      setUsers([...users, newUser]);
+      setUsers([...users, newMessage]);
 
       // Send email using EmailJS
       emailjs
@@ -95,7 +95,7 @@ export default function Usersform() {
 
   return (
     <>
-      <form onSubmit={addUsers} className="flex flex-col gap-4 w-full">
+      <form onSubmit={sendMessage} className="flex flex-col gap-4 w-full">
         <TextField
           label="Name"
           value={name}

@@ -29,7 +29,7 @@ export default function Bookarepair() {
   </div>
 </div>
 </section>
-<section className="bg-white px-4">
+<section className="bg-white dark:bg-zinc-900 dark:text-white px-4">
 <div className="container flex flex-col items-center"><div className="w-full lg:w-2/5 py-44"><Bookrepair/></div></div>
 </section>
 <Footer/>
