@@ -103,3 +103,6 @@ export const sendEmail = async (type, formData) => {
     return { success: false, error: error.message };
   }
 };
+
+
+//env variables added and loaded
