@@ -105,4 +105,4 @@ export const sendEmail = async (type, formData) => {
 };
 
 
-//env variables added and loaded
+//env variables added and loaded with changes
