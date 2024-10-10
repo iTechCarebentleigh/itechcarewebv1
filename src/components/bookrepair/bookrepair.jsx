@@ -3,6 +3,8 @@ import { Icon, Popover, Card, TextField, Button, DatePicker,Autocomplete } from 
 import Link from 'next/link';
 import axios from 'axios';
 import {Select} from '@shopify/polaris';
+import { collection, addDoc, getDocs, serverTimestamp } from "firebase/firestore"; // Add serverTimestamp
+import { db } from "../../../firebase";
 
 const Bookrepair = () => {
     function nodeContainsDescendant(rootNode, descendant) {
@@ -114,68 +116,82 @@ const Bookrepair = () => {
   
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission
-  
+
     // Reset all validation errors
     setNameValidationError('');
     setPhoneValidationError('');
     setEmailValidationError('');
     setDeviceValidationError('');
     setIssueValidationError('');
-  
+
     let hasValidationErrors = false; // New flag for checking errors
-  
+
     // Validate required fields
     if (!name) {
-      setNameValidationError('Name is required.');
-      hasValidationErrors = true;
+        setNameValidationError('Name is required.');
+        hasValidationErrors = true;
     }
     if (!phone) {
-      setPhoneValidationError('Phone number is required.');
-      hasValidationErrors = true;
+        setPhoneValidationError('Phone number is required.');
+        hasValidationErrors = true;
     }
     if (!deviceValue) {
-      setDeviceValidationError('Device is required.');
-      hasValidationErrors = true;
+        setDeviceValidationError('Device is required.');
+        hasValidationErrors = true;
     }
     if (!issueInput) {
-      setIssueValidationError('Issue is required.');
-      hasValidationErrors = true;
+        setIssueValidationError('Issue is required.');
+        hasValidationErrors = true;
     }
     if (!isValidEmail(email)) {
-      setEmailValidationError('Please enter a valid email address.');
-      hasValidationErrors = true;
+        setEmailValidationError('Please enter a valid email address.');
+        hasValidationErrors = true;
     }
-  
+
     // If there are any validation errors, set the state and return early
     if (hasValidationErrors) {
-      setValidationErrorsAvailable(true); // Set errors available to true
-      return; // Exit if there are errors
+        setValidationErrorsAvailable(true); // Set errors available to true
+        return; // Exit if there are errors
     }
-  
+
     // If no validation errors, reset validation error state and proceed with form submission
     setValidationErrorsAvailable(false); // No errors, set this to false
-  
-    console.log({
+
+    // Prepare data to send to the API
+    const formData = {
       name,
       email,
       phone,
       visitDate,
       brand,
-      deviceValue,
-      issueInput,
-    });
-  
-    // Clear all input fields if submission was successful (i.e., no validation errors)
-    setName('');
-    setEmail('');
-    setPhone('');
-    setdeviceValue('');
-    setIssueInput('');
-  
-    // Optionally, reset any other relevant state here
+      device: deviceValue,
+      issue: issueInput,
+      createdAt: serverTimestamp(), // Timestamp for when the document is created
   };
+
+    try {
+        // Send a POST request to your API
+        const response = await axios.post('/api/book-repair-user', {formData}); // Adjust the endpoint as necessary
+        await addDoc(collection(db, "bookRepair"), formData); // Change "bookRepair" to your desired collection name
+
+        if (response.data.success) {
+            // Clear all input fields if submission was successful
+            setName('');
+            setEmail('');
+            setPhone('');
+            setdeviceValue('');
+            setIssueInput('');
+        } else {
+            setError('Submission failed, please try again.');
+        }
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        setError('An error occurred while submitting the form.');
+    }
+};
+
 
 
     

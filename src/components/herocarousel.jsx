@@ -103,6 +103,7 @@ const Herocarousel = () => {
     {/* Background Image for Slide 1 */}
     <Image
     width={10000}
+    alt='Book a repair'
     height={10000}
       src="/static-images/hero1.png"
       className="w-full h-full absolute object-cover "
@@ -141,6 +142,8 @@ const Herocarousel = () => {
     <Image
       width={10000}
       height={10000}
+      alt='Buy a device'
+
       src="/static-images/hero2.png"
       className="w-full h-full absolute object-cover "
       style={{ zIndex: 0, top: 0, left: 0 }}
@@ -178,6 +181,7 @@ const Herocarousel = () => {
     <Image
       src="/static-images/hero3.png"
       width={10000}
+      alt='Request a repair quote'
       height={10000}
       className="w-full h-full absolute object-cover "
       style={{ zIndex: 0, top: 0, left: 0 }}
