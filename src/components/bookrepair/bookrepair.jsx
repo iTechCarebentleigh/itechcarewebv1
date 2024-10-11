@@ -5,6 +5,10 @@ import axios from 'axios';
 import {Select} from '@shopify/polaris';
 import { collection, addDoc, getDocs, serverTimestamp } from "firebase/firestore"; // Add serverTimestamp
 import { db } from "../../../firebase";
+import { toast } from 'sonner'
+import {
+  ClockIcon
+} from '@shopify/polaris-icons';
 
 const Bookrepair = () => {
     function nodeContainsDescendant(rootNode, descendant) {
@@ -21,6 +25,7 @@ const Bookrepair = () => {
         return false;
     }
 
+    const [selectedTime, setSelectedTime] = useState('12:00'); // Default to 12:00
 
     const [visible, setVisible] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -28,9 +33,13 @@ const Bookrepair = () => {
         month: selectedDate.getMonth(),
         year: selectedDate.getFullYear(),
     });
-    const visitDate = selectedDate.toISOString().slice(0, 10);
+    const visitDate = `${selectedDate.toISOString().slice(0, 10)} ${selectedTime}:00`;
     const datePickerRef = useRef(null);
-
+    const closedDates = [
+      new Date('Mon Feb 12 2018 00:00:00 GMT-0500 (EST)'),
+      new Date('Sat Feb 10 2018 00:00:00 GMT-0500 (EST)'),
+      new Date('Wed Feb 21 2018 00:00:00 GMT-0500 (EST)'),
+    ];
     function isNodeWithinPopover(node) {
         return datePickerRef?.current
             ? nodeContainsDescendant(datePickerRef.current, node)
@@ -39,6 +48,7 @@ const Bookrepair = () => {
 
     const handledeviceValueChange = () => {
     };
+    const handleTimeChange = useCallback((newValue) => setSelectedTime(newValue), []);
 
     const handleOnClose = ({ relatedTarget }) => {
         setVisible(false);
@@ -75,7 +85,7 @@ const Bookrepair = () => {
     const [categories, setCategories] = useState([]);
     const [repairID, setRepairID] = useState(); // Store the list of repairs for the device
     const [error, setError] = useState('');
-
+    const [queryLoading,setQueryLoading]=useState(false)
 
    
 
@@ -118,6 +128,7 @@ const Bookrepair = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission
+    setQueryLoading(true);  // Start the loading state
 
     // Reset all validation errors
     setNameValidationError('');
@@ -126,7 +137,7 @@ const Bookrepair = () => {
     setDeviceValidationError('');
     setIssueValidationError('');
 
-    let hasValidationErrors = false; // New flag for checking errors
+    let hasValidationErrors = false; // Flag for checking errors
 
     // Validate required fields
     if (!name) {
@@ -150,47 +161,57 @@ const Bookrepair = () => {
         hasValidationErrors = true;
     }
 
-    // If there are any validation errors, set the state and return early
+    // If there are any validation errors, reset the loading state and return early
     if (hasValidationErrors) {
-        setValidationErrorsAvailable(true); // Set errors available to true
-        return; // Exit if there are errors
+        setValidationErrorsAvailable(true);
+        toast.error('Please enter valid inputs.');
+        setQueryLoading(false);  // Reset loading state on validation error
+        return;  // Exit if there are errors
     }
 
     // If no validation errors, reset validation error state and proceed with form submission
-    setValidationErrorsAvailable(false); // No errors, set this to false
+    setValidationErrorsAvailable(false);
 
     // Prepare data to send to the API
     const formData = {
-      name,
-      email,
-      phone,
-      visitDate,
-      brand,
-      device: deviceValue,
-      issue: issueInput,
-      createdAt: serverTimestamp(), // Timestamp for when the document is created
-  };
+        name,
+        email,
+        phone,
+        visitDate,
+        brand,
+        device: deviceValue,
+        issue: issueInput,
+        createdAt: serverTimestamp(), // Timestamp for when the document is created
+    };
 
     try {
         // Send a POST request to your API
-        const response = await axios.post('/api/book-repair-user', {formData}); // Adjust the endpoint as necessary
-        await addDoc(collection(db, "bookRepair"), formData); // Change "bookRepair" to your desired collection name
+        const response = await axios.post('/api/book-repair-user', { formData });
+        await addDoc(collection(db, "bookRepair"), formData);  // Save to your collection
 
         if (response.data.success) {
             // Clear all input fields if submission was successful
+            toast.success('Successfully made a repair booking. P.S. Check your email');
+
             setName('');
             setEmail('');
             setPhone('');
-            setdeviceValue('');
+            setDeviceValue('');
             setIssueInput('');
+
+            // Show success toast notification
         } else {
             setError('Submission failed, please try again.');
         }
     } catch (error) {
-        console.error('Error submitting form:', error);
         setError('An error occurred while submitting the form.');
+    } finally {
+        // Always reset loading state after try/catch
+        setQueryLoading(false);
+
     }
 };
+
 
 
 
@@ -417,18 +438,28 @@ const Bookrepair = () => {
                             preventCloseOnChildOverlayClick
                             onClose={handleOnClose}
                             activator={
-                                <TextField
-                                    role="combobox"
-                                    label={"Date to visit"}
-                                    suffix={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
-                                        <path fillRule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clipRule="evenodd" />
-                                    </svg>}
-                                    value={visitDate}
-                                    onFocus={() => setVisible(true)}
-                                    onChange={handledeviceValueChange}
-                                    autoComplete="off"
-                                    requiredIndicator // Add requiredIndicator attribute
+                                <div className='flex flex-row gap-4'>
+                                  <TextField
+                                      role="combobox"
+                                      label={"Date to visit"}
+                                      suffix={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
+                                          <path fillRule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clipRule="evenodd" />
+                                      </svg>}
+                                      value={visitDate}
+                                      onFocus={() => setVisible(true)}
+                                      onChange={handledeviceValueChange}
+                                      autoComplete="off"
+                                      requiredIndicator // Add requiredIndicator attribute
+                                  />
+                                  <TextField
+                                    label="Select Time"
+                                    type="time"  // Use time input type
+                                    value={selectedTime}
+                                    suffix={ClockIcon}
+                                    onChange={handleTimeChange}
+                                    requiredIndicator
                                 />
+                                </div>
                             }
                         >
                             <Card>
@@ -437,6 +468,7 @@ const Bookrepair = () => {
                                     year={year}
                                     selected={selectedDate}
                                     onMonthChange={handleMonthChange}
+                                
                                     onChange={handleDateSelection}
                                 />
                             </Card>
@@ -485,7 +517,7 @@ const Bookrepair = () => {
   />
                 </div>
                 <div className='mt-4'>
-                    <Button onClick={handleSubmit} variant='primary'>Book Repair</Button> {/* Change to type='submit' */}
+                    <Button loading={queryLoading} onClick={handleSubmit} variant='primary'>Book Repair</Button> {/* Change to type='submit' */}
                 </div>
             </form>
             <p className="text-base mt-8 text-left text-zinc-500">

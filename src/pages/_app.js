@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import "@/style-dictionary-dist/variables.css";
 import '@arco-design/web-react/dist/css/arco.css';
+import { Toaster } from 'sonner'
 
 import { AppProvider } from '@shopify/polaris';
 import '@shopify/polaris/build/esm/styles.css';
@@ -35,6 +36,7 @@ export default function App({ Component, pageProps }) {
   return (
     <AppProvider i18n={translations}>
       <Analytics />
+      <Toaster richColors  />
       <Header/>
       <Component {...pageProps} />
     </AppProvider>

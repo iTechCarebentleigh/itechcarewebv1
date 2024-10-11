@@ -1,8 +1,11 @@
 import nodemailer from 'nodemailer';
+import { MailtrapClient } from "mailtrap"
 
 export const sendEmail = async (type, formData) => {
   const businessEmail = process.env.BUSINESS_EMAIL ;
   const noreplyBusinessEmail = process.env.EMAIL_FROM;;
+  const TOKEN = process.env.MAILTRAP_TOKEN; // Mailtrap token from environment variables
+  const templateUuid = "aa8d826c-5510-48d6-b3c0-615b2e9575f7"; // Mailtrap template UUID for the user email
 
   // Validate environment variables
   if (!process.env.MAILTRAP_HOST || !process.env.MAILTRAP_USER || !process.env.MAILTRAP_PASS) {
@@ -17,10 +20,15 @@ export const sendEmail = async (type, formData) => {
     }
   }
 
+  const transport = new MailtrapClient({ token: TOKEN });
+
+
   const transporter = nodemailer.createTransport({
     host: process.env.MAILTRAP_HOST,
     port: 587,
     secure: false,
+    token: TOKEN,
+
     auth: {
       user: process.env.MAILTRAP_USER,
       pass: process.env.MAILTRAP_PASS,
@@ -52,30 +60,26 @@ export const sendEmail = async (type, formData) => {
         `,
       };
     
-    
+      const sender = { name: "iTechCare", email: noreplyBusinessEmail};
+
 
       const userMailOptions = {
-        from: noreplyBusinessEmail,
-        to: formData.email,
-        subject: `Your Book Repair Request for ${formData.device}`,
-        html: `
-          <h2>Booking Confirmed</h2>
-          <p>Dear ${formData.name},</p>
-          <p>Thank you for booking your repair with us. Here are the details:</p>
-          <ul>
-            <li>Device: ${formData.device}</li>
-            <li>Issue: ${formData.issue}</li>
-            <li>Visit Date: ${formData.visitDate}</li>
-
-          </ul>
-          <p>We look forward to welcoming you.</p>
-          <p>Best regards,<br>iTech Care</p>
-        `,
+        from: sender, // Use the sender defined
+        to: [{ email: formData.email }],
+        template_uuid: templateUuid, // Use the Mailtrap template UUID
+        template_variables: {
+          "name": formData.name,
+          "email": formData.email,
+          "phone": formData.phone,
+          "visitDate": formData.visitDate || "Not provided",
+          "brand": formData.brand || "Not specified",
+          "deviceValue": formData.device,
+          "issueInput": formData.issue}
       };
 
       await transporter.sendMail(teamMailOptions);
       console.log(`Team notified for device: ${formData.device}`);
-      await transporter.sendMail(userMailOptions);
+      await transport.send(userMailOptions);
       console.log(`User notified: ${formData.email}`);
       return { success: true };
     } else if (type === 'Request a Quote') {
