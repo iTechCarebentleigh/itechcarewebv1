@@ -9,6 +9,7 @@ import { toast } from 'sonner'
 import {
   ClockIcon
 } from '@shopify/polaris-icons';
+import moment from 'moment-timezone'; // Import moment-timezone
 
 const Bookrepair = () => {
     function nodeContainsDescendant(rootNode, descendant) {
@@ -126,6 +127,7 @@ const Bookrepair = () => {
   
 
 
+
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission
     setQueryLoading(true);  // Start the loading state
@@ -169,6 +171,58 @@ const Bookrepair = () => {
         return;  // Exit if there are errors
     }
 
+    // Check if the visit time is valid (Australia/Sydney timezone)
+    const visitDateMoment = moment.tz(visitDate, 'Australia/Sydney');  // Convert to Australia/Sydney time
+    const dayOfWeek = visitDateMoment.day(); // 0 is Sunday, 1 is Monday, ..., 6 is Saturday
+    const hour = visitDateMoment.hour();
+    const minute = visitDateMoment.minute();
+
+    // Weekday (Monday to Friday) check: Not before 9 AM and not after 5:30 PM
+    const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
+    const isWeekdayValid = (hour > 9 || (hour === 9 && minute >= 0)) && (hour < 17 || (hour === 17 && minute <= 30));
+
+    // Weekend (Saturday and Sunday) check: Not before 10 AM and not after 4:30 PM
+    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+    const isWeekendValid = (hour > 10 || (hour === 10 && minute >= 0)) && (hour < 16 || (hour === 16 && minute <= 30));
+
+    // If the time is outside the valid range, show a warning and return
+    if (!(isWeekday && isWeekdayValid) && !(isWeekend && isWeekendValid)) {
+        // toast.warning("Sorry, We aren't available at that time.");
+        toast.custom((t) => (
+          <div style={{fontFamily:'Clash Grotesk'}} className='bg-amber-50 border-1 border border-amber-300 px-3 w-full py-2 text-amber-500 rounded-xl shadow-2xl'>
+            <div className='flex flex-row gap-2 text-base items-center'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
+  <path fillRule="evenodd" d="M6.701 2.25c.577-1 2.02-1 2.598 0l5.196 9a1.5 1.5 0 0 1-1.299 2.25H2.804a1.5 1.5 0 0 1-1.3-2.25l5.197-9ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 1 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
+</svg>
+<span>Sorry, we aren't available at that period.</span></div>
+             <div className=' flex flex-col mt-4'>
+            <span className='text-lg font-semibold'>Booking Hours:</span>
+            <table className="mt-1 border-collapse border border-amber-300">
+  {/* <thead>
+    <tr>
+      <th className="border border-amber-300 p-2">Day</th>
+      <th className="border border-amber-300 p-2">Time</th>
+    </tr>
+  </thead> */}
+  <tbody>
+    <tr>
+      <td className="border border-amber-300 p-2 font-semibold">Weekdays</td>
+      <td className="border border-amber-300 p-2">9 : 00 AM - 5 : 30 PM</td>
+    </tr>
+    <tr>
+      <td className="border border-amber-300 p-2 font-semibold">Weekends</td>
+      <td className="border border-amber-300 p-2">10 : 00 AM - 4 : 30 PM</td>
+    </tr>
+  </tbody>
+</table>
+
+
+             </div>
+          </div>
+        ));
+        setQueryLoading(false);  // Reset loading state
+        return;  // Prevent form submission
+    }
+
     // If no validation errors, reset validation error state and proceed with form submission
     setValidationErrorsAvailable(false);
 
@@ -208,7 +262,6 @@ const Bookrepair = () => {
     } finally {
         // Always reset loading state after try/catch
         setQueryLoading(false);
-
     }
 };
 
@@ -456,6 +509,7 @@ const Bookrepair = () => {
                                     type="time"  // Use time input type
                                     value={selectedTime}
                                     suffix={ClockIcon}
+                                    
                                     onChange={handleTimeChange}
                                     requiredIndicator
                                 />

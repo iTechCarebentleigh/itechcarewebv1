@@ -4,6 +4,8 @@ import { db } from "../../firebase";
 import { Button, TextField, Banner } from '@shopify/polaris';
 import Link from "next/link";
 import emailjs from 'emailjs-com';
+import { toast } from 'sonner'
+
 
 export default function Usersform() {
   const [name, setName] = useState("");
@@ -31,14 +33,14 @@ export default function Usersform() {
     fetchUsers();
   }, []);
 
-  useEffect(() => {
-    if (showBanner) {
-      const timer = setTimeout(() => {
-        setShowBanner(false);
-      }, 3000);
-      return () => clearTimeout(timer); // Cleanup the timeout if the component unmounts
-    }
-  }, [showBanner]);
+  // useEffect(() => {
+  //   if (showBanner) {
+  //     const timer = setTimeout(() => {
+  //       setShowBanner(false);
+  //     }, 3000);
+  //     return () => clearTimeout(timer); // Cleanup the timeout if the component unmounts
+  //   }
+  // }, [showBanner]);
 
   const validateFields = () => {
     const errors = {};
@@ -85,9 +87,11 @@ export default function Usersform() {
       setPhone("");
       setMessage("");
       setErrors({});
-      setShowBanner(true); // Show banner on successful submission
+      toast.success("Message Sent Successfully")
     } catch (error) {
       console.error("Error adding document: ", error);
+      toast.error("Error sending message.")
+
     } finally {
       setSending(false);
     }
@@ -136,13 +140,13 @@ export default function Usersform() {
         />
         <Button variant="primary" submit loading={sending}>Submit</Button>
       </form>
-      {showBanner && (
+      {/* {showBanner && (
         <Banner
           onDismiss={() => setShowBanner(false)}
         >
           <p>Your query has been submitted!</p>
         </Banner>
-      )}
+      )} */}
       <p className="text-lg text-center text-zinc-500">
         By submitting, you agree to our <Link className="text-semantic-action-600 underline" href={'/privacy-policy'}>Privacy Policy</Link> and <Link className="text-semantic-action-600 underline" href={'/terms-and-conditions'}>Terms & Conditions</Link>
       </p>
