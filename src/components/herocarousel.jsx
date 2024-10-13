@@ -5,6 +5,7 @@ import { LegacyStack, RadioButton,Button } from '@shopify/polaris';
 import Bookrepair from './bookrepair/bookrepair';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Global, css } from '@emotion/react';
+import Link from 'next/link';
 import {
   CartIcon
 } from '@shopify/polaris-icons';
@@ -131,7 +132,7 @@ const Herocarousel = () => {
          out on anything</p>
       </div>
       <div>
-        <Button fullWidth={false}>Learn More</Button>
+        <Link href="/repairs"><Button fullWidth={false}>Learn More</Button></Link>
       </div>
     </div>
   </SwiperSlide>
