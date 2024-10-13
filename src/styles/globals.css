@@ -10,6 +10,9 @@
   }
 }
 
+:root{
+  --p-font-family-sans:'Clash Grotesk', sans-serif!important;
+}
 body {
   /* color: var(--p-color-bg-surface-success); */
 font-family: var(--typography-font-family-sansserif),sans-serif !important;

@@ -231,8 +231,9 @@ const Bookrepair = () => {
             setName('');
             setEmail('');
             setPhone('');
-            setDeviceValue('');
+            setdeviceValue('');
             setIssueInput('');
+            setBrand('');
         } else {
             setError('Submission failed, please try again.');
         }

@@ -160,9 +160,9 @@ const Requestquote = () => {
             setName('');
             setEmail('');
             setPhone('');
-            setDeviceValue('');
-            setIssueInput('');
-
+            setdeviceValue('');
+            setIssueInput('')
+            setBrand('')
             // Show success toast notification
         } else {
             setError('Submission failed, please try again.');
@@ -251,7 +251,7 @@ const Requestquote = () => {
               
               setFilteredDevices(filtered);
 
-              setDevice(''); // Reset device dropdown when company changes
+              setdeviceValue(''); // Reset device dropdown when company changes
               setRepairs([]);
               setIssueInput('')
             }
@@ -293,7 +293,6 @@ const Requestquote = () => {
       });
       setRepairID(selected)
       setSelectedOptions(selected);
-      setIssueInput('')
 
       setdeviceValue(selectedValue[0] || ''); // Handle single selection case
     },
