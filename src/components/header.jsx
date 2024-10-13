@@ -264,6 +264,8 @@ export default function Header() {
   </div>  
       
   <CustomLink href={'/products'}>Product Listings</CustomLink>
+  <CustomLink href={'/requestquote'}>Request a quote</CustomLink>
+
                 <CustomLink href={'/products'}>Contact</CustomLink>
                 <div onClick={handleCall} className={`text-white cursor-pointer text-lg hover:underline flex flex-row gap-2 items-center`}>
                   <svg
@@ -293,8 +295,8 @@ export default function Header() {
           </div>
           
      
-    <div className={`transition-all overflow-hidden duration-300  ${isToggled ? 'h-40' : 'h-0'}`}>
-      <div className='pt-4 flex flex-col gap-2'>
+    <div className={`transition-all overflow-hidden duration-300  ${isToggled ? 'h-60' : 'h-0'}`}>
+      <div className='pt-6 pr-4 flex flex-col gap-4 items-end'>
 <div onClick={()=>{
   setISToggled(!isToggled)
 }}>
@@ -305,10 +307,14 @@ export default function Header() {
 <div onClick={()=>{
   setISToggled(!isToggled)
 }}><CustomLink href={'/products'}>Product Listings</CustomLink></div>
+<div onClick={()=>{
+  setISToggled(!isToggled)
+}}><CustomLink href={'/requestquote'}>Request quote</CustomLink></div>
       
       <div onClick={()=>{
   setISToggled(!isToggled)
-}}><CustomLink href={'/products'}>Contact</CustomLink></div>
+}}>
+  <CustomLink href={'/products'}>Contact</CustomLink></div>
 <div onClick={() => { handleCall(); setISToggled(!isToggled); }} className={`text-white cursor-pointer text-lg hover:underline flex flex-row gap-2 items-center`}>
 <svg
     width={20}
