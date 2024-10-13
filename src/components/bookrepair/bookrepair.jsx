@@ -109,7 +109,7 @@ const Bookrepair = () => {
     const [emailValidationError, setEmailValidationError] = useState('');
     const [nameValidationError, setNameValidationError] = useState('');
     const [phoneValidationError, setPhoneValidationError] = useState('');
-    const [dateValidationError, setDateValidationError] = useState('');
+    const [brandValidationError, setBrandValidationError] = useState('');
     const [deviceValidationError, setDeviceValidationError] = useState('');
     const [issueValidationError, setIssueValidationError] = useState('');
     const [validationErrorsAvailable, setValidationErrorsAvailable] = useState(false); // Initialized as false
@@ -129,8 +129,8 @@ const Bookrepair = () => {
 
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent the default form submission
-    setQueryLoading(true);  // Start the loading state
+    event.preventDefault(); // Prevent default form submission
+    setQueryLoading(true); // Start loading state
 
     // Reset all validation errors
     setNameValidationError('');
@@ -138,8 +138,9 @@ const Bookrepair = () => {
     setEmailValidationError('');
     setDeviceValidationError('');
     setIssueValidationError('');
+    setBrandValidationError(''); // Reset brand error
 
-    let hasValidationErrors = false; // Flag for checking errors
+    let hasValidationErrors = false; // Flag to check errors
 
     // Validate required fields
     if (!name) {
@@ -162,108 +163,86 @@ const Bookrepair = () => {
         setEmailValidationError('Please enter a valid email address.');
         hasValidationErrors = true;
     }
+    if (brand === '') {
+        setBrandValidationError('Brand is required.');
+        hasValidationErrors = true;
+    }
 
-    // If there are any validation errors, reset the loading state and return early
+    // Stop submission if there are validation errors
     if (hasValidationErrors) {
         setValidationErrorsAvailable(true);
         toast.error('Please enter valid inputs.');
-        setQueryLoading(false);  // Reset loading state on validation error
-        return;  // Exit if there are errors
+        setQueryLoading(false); // Reset loading state
+        return; // Exit early
     }
 
-    // Check if the visit time is valid (Australia/Sydney timezone)
-    const visitDateMoment = moment.tz(visitDate, 'Australia/Sydney');  // Convert to Australia/Sydney time
-    const dayOfWeek = visitDateMoment.day(); // 0 is Sunday, 1 is Monday, ..., 6 is Saturday
+    // Check valid booking time
+    const visitDateMoment = moment.tz(visitDate, 'Australia/Sydney');
+    const dayOfWeek = visitDateMoment.day();
     const hour = visitDateMoment.hour();
     const minute = visitDateMoment.minute();
-
-    // Weekday (Monday to Friday) check: Not before 9 AM and not after 5:30 PM
     const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
-    const isWeekdayValid = (hour > 9 || (hour === 9 && minute >= 0)) && (hour < 17 || (hour === 17 && minute <= 30));
-
-    // Weekend (Saturday and Sunday) check: Not before 10 AM and not after 4:30 PM
+    const isWeekdayValid = (hour > 9 || (hour === 9 && minute >= 0)) && 
+                           (hour < 17 || (hour === 17 && minute <= 30));
     const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-    const isWeekendValid = (hour > 10 || (hour === 10 && minute >= 0)) && (hour < 16 || (hour === 16 && minute <= 30));
+    const isWeekendValid = (hour > 10 || (hour === 10 && minute >= 0)) && 
+                           (hour < 16 || (hour === 16 && minute <= 30));
 
-    // If the time is outside the valid range, show a warning and return
     if (!(isWeekday && isWeekdayValid) && !(isWeekend && isWeekendValid)) {
-        // toast.warning("Sorry, We aren't available at that time.");
         toast.custom((t) => (
-          <div style={{fontFamily:'Clash Grotesk'}} className='bg-amber-50 border-1 border border-amber-300 px-3 w-full py-2 text-amber-500 rounded-xl shadow-2xl'>
-            <div className='flex flex-row gap-2 text-base items-center'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
-  <path fillRule="evenodd" d="M6.701 2.25c.577-1 2.02-1 2.598 0l5.196 9a1.5 1.5 0 0 1-1.299 2.25H2.804a1.5 1.5 0 0 1-1.3-2.25l5.197-9ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 1 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
-</svg>
-<span>Sorry, we aren't available at that period.</span></div>
-             <div className=' flex flex-col mt-4'>
-            <span className='text-lg font-semibold'>Booking Hours:</span>
-            <table className="mt-1 border-collapse border border-amber-300">
-  {/* <thead>
-    <tr>
-      <th className="border border-amber-300 p-2">Day</th>
-      <th className="border border-amber-300 p-2">Time</th>
-    </tr>
-  </thead> */}
-  <tbody>
-    <tr>
-      <td className="border border-amber-300 p-2 font-semibold">Weekdays</td>
-      <td className="border border-amber-300 p-2">9 : 00 AM - 5 : 30 PM</td>
-    </tr>
-    <tr>
-      <td className="border border-amber-300 p-2 font-semibold">Weekends</td>
-      <td className="border border-amber-300 p-2">10 : 00 AM - 4 : 30 PM</td>
-    </tr>
-  </tbody>
-</table>
-
-
-             </div>
-          </div>
+            <div className="bg-amber-50 border border-amber-300 px-3 py-2 text-amber-500 rounded-xl shadow-2xl">
+                <div className="flex gap-2 items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="size-4" fill="currentColor" viewBox="0 0 16 16">
+                        <path fillRule="evenodd" d="M6.701 2.25c.577-1 2.02-1 2.598 0l5.196 9a1.5 1.5 0 0 1-1.299 2.25H2.804a1.5 1.5 0 0 1-1.3-2.25l5.197-9ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 1 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
+                    </svg>
+                    <span>Sorry, we aren't available at that period.</span>
+                </div>
+                <div className="mt-4">
+                    <span className="text-lg font-semibold">Booking Hours:</span>
+                    <table className="mt-1 border-collapse border border-amber-300">
+                        <tbody>
+                            <tr>
+                                <td className="border border-amber-300 p-2 font-semibold">Weekdays</td>
+                                <td className="border border-amber-300 p-2">9:00 AM - 5:30 PM</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-amber-300 p-2 font-semibold">Weekends</td>
+                                <td className="border border-amber-300 p-2">10:00 AM - 4:30 PM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         ));
-        setQueryLoading(false);  // Reset loading state
-        return;  // Prevent form submission
+        setQueryLoading(false); // Reset loading state
+        return; // Prevent submission
     }
 
-    // If no validation errors, reset validation error state and proceed with form submission
+    // Proceed with form submission if no errors
     setValidationErrorsAvailable(false);
-
-    // Prepare data to send to the API
-    const formData = {
-        name,
-        email,
-        phone,
-        visitDate,
-        brand,
-        device: deviceValue,
-        issue: issueInput,
-        createdAt: serverTimestamp(), // Timestamp for when the document is created
-    };
+    const formData = { name, email, phone, visitDate, brand, device: deviceValue, issue: issueInput, createdAt: serverTimestamp() };
 
     try {
-        // Send a POST request to your API
         const response = await axios.post('/api/book-repair-user', { formData });
-        await addDoc(collection(db, "bookRepair"), formData);  // Save to your collection
+        await addDoc(collection(db, "bookRepair"), formData);
 
         if (response.data.success) {
-            // Clear all input fields if submission was successful
             toast.success('Successfully made a repair booking. P.S. Check your email');
-
             setName('');
             setEmail('');
             setPhone('');
             setDeviceValue('');
             setIssueInput('');
-
-            // Show success toast notification
         } else {
             setError('Submission failed, please try again.');
         }
     } catch (error) {
         setError('An error occurred while submitting the form.');
     } finally {
-        // Always reset loading state after try/catch
-        setQueryLoading(false);
+        setQueryLoading(false); // Reset loading state
     }
 };
+
 
 
 
@@ -399,7 +378,7 @@ const Bookrepair = () => {
       value={deviceValue}
       error={deviceValidationError}
     //   prefix={<Icon source={SearchIcon} tone="base" />}
-      placeholder="Select or enter device"
+      placeholder="Select or type your device"
       autoComplete="off"
               requiredIndicator 
 
@@ -454,6 +433,7 @@ const Bookrepair = () => {
                             autoComplete="off" 
                             requiredIndicator // Add requiredIndicator attribute
                             error={nameValidationError}
+                            placeholder='Enter your name'
                         />
                     </div>
                     <div className="w-full md:w-1/2">
@@ -465,6 +445,8 @@ const Bookrepair = () => {
                             autoComplete="off" 
                             error={emailValidationError}
                             requiredIndicator // Add requiredIndicator attribute
+                            placeholder='Enter your email'
+
                         />
                     </div>
                 </div>
@@ -478,6 +460,8 @@ const Bookrepair = () => {
                             autoComplete="off" 
                             requiredIndicator // Add requiredIndicator attribute
                             error={phoneValidationError}
+                            placeholder='Enter your phone'
+
                         />
                     </div>
                     <div className="w-full md:w-1/2">
@@ -531,15 +515,15 @@ const Bookrepair = () => {
                 </div>
                 <div className='w-full flex flex-col lg:flex-row gap-4'>
                     <div className="w-full md:w-1/2">
-                      
-                        <Select
-      label="Brand"
-      options={uniqueCompanies}
-      onChange={handleBrandChange}
-      value={brand}
-      requiredIndicator // Add requiredIndicator attribute
+                    <Select
+  label="Brand"
+  options={[{ value: '', label: 'Select a brand' }, ...uniqueCompanies]}
+  onChange={handleBrandChange}
+  value={brand}
+  requiredIndicator // Add requiredIndicator attribute
+  error={brandValidationError}
+/>
 
-    />
                     </div>
                     <div className="w-full md:w-1/2">
                        
@@ -562,7 +546,7 @@ const Bookrepair = () => {
         onChange={updateIssueText}
         label="Issue"
         value={issueInput}
-        placeholder="Select or enter issue"
+        placeholder="Select or type your issue"
         autoComplete="off"
         error={issueValidationError}
         requiredIndicator // Add requiredIndicator attribute

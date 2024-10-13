@@ -86,13 +86,14 @@ export const sendEmail = async (type, formData) => {
       const quoteMailOptions = {
         from: noreplyBusinessEmail,
         to: businessEmail,
-        subject: `New Quote Request for ${formData.service}`,
-        text: `
-          Name: ${formData.name}
-          Email: ${formData.email}
-          Phone: ${formData.phone}
-          Service: ${formData.service}
-          Additional Details: ${formData.details}
+        subject: `New Quote Request for ${formData.device}`,
+        html: `
+            <p><strong>Name:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Phone:</strong> ${formData.phone}</p>
+            <p><strong>Brand:</strong> ${formData.brand}</p>
+            <p><strong>Device:</strong> ${formData.device}</p>
+            <p><strong>Issue:</strong> ${formData.issue}</p>
 
           Please provide a quote for the requested service.
         `,

@@ -26,52 +26,8 @@ const Requestquote = () => {
         return false;
     }
 
-    const [selectedTime, setSelectedTime] = useState('12:00'); // Default to 12:00
+   
 
-    const [visible, setVisible] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(new Date());
-    const [{ month, year }, setDate] = useState({
-        month: selectedDate.getMonth(),
-        year: selectedDate.getFullYear(),
-    });
-    const visitDate = `${selectedDate.toISOString().slice(0, 10)} ${selectedTime}:00`;
-    const datePickerRef = useRef(null);
-    const closedDates = [
-      new Date('Mon Feb 12 2018 00:00:00 GMT-0500 (EST)'),
-      new Date('Sat Feb 10 2018 00:00:00 GMT-0500 (EST)'),
-      new Date('Wed Feb 21 2018 00:00:00 GMT-0500 (EST)'),
-    ];
-    function isNodeWithinPopover(node) {
-        return datePickerRef?.current
-            ? nodeContainsDescendant(datePickerRef.current, node)
-            : false;
-    }
-
-    const handledeviceValueChange = () => {
-    };
-    const handleTimeChange = useCallback((newValue) => setSelectedTime(newValue), []);
-
-    const handleOnClose = ({ relatedTarget }) => {
-        setVisible(false);
-    };
-
-    const handleMonthChange = (month, year) => {
-        setDate({ month, year });
-    };
-
-    const handleDateSelection = ({ end: newSelectedDate }) => {
-        setSelectedDate(newSelectedDate);
-        setVisible(false);
-    };
-
-    useEffect(() => {
-        if (selectedDate) {
-            setDate({
-                month: selectedDate.getMonth(),
-                year: selectedDate.getFullYear(),
-            });
-        }
-    }, [selectedDate]);
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -109,10 +65,10 @@ const Requestquote = () => {
     const [emailValidationError, setEmailValidationError] = useState('');
     const [nameValidationError, setNameValidationError] = useState('');
     const [phoneValidationError, setPhoneValidationError] = useState('');
-    const [dateValidationError, setDateValidationError] = useState('');
     const [deviceValidationError, setDeviceValidationError] = useState('');
     const [issueValidationError, setIssueValidationError] = useState('');
     const [validationErrorsAvailable, setValidationErrorsAvailable] = useState(false); // Initialized as false
+    const [brandValidationError, setBrandValidationError] = useState('');
 
     const isValidEmail = (email) => {
       // Check for empty email
@@ -138,6 +94,7 @@ const Requestquote = () => {
     setEmailValidationError('');
     setDeviceValidationError('');
     setIssueValidationError('');
+    setBrandValidationError(''); // Reset brand validation error
 
     let hasValidationErrors = false; // Flag for checking errors
 
@@ -162,6 +119,10 @@ const Requestquote = () => {
         setEmailValidationError('Please enter a valid email address.');
         hasValidationErrors = true;
     }
+    if (brand === '') {
+      setBrandValidationError('Brand is required.');
+      hasValidationErrors = true;
+  }
 
     // If there are any validation errors, reset the loading state and return early
     if (hasValidationErrors) {
@@ -171,57 +132,7 @@ const Requestquote = () => {
         return;  // Exit if there are errors
     }
 
-    // Check if the visit time is valid (Australia/Sydney timezone)
-    const visitDateMoment = moment.tz(visitDate, 'Australia/Sydney');  // Convert to Australia/Sydney time
-    const dayOfWeek = visitDateMoment.day(); // 0 is Sunday, 1 is Monday, ..., 6 is Saturday
-    const hour = visitDateMoment.hour();
-    const minute = visitDateMoment.minute();
 
-    // Weekday (Monday to Friday) check: Not before 9 AM and not after 5:30 PM
-    const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
-    const isWeekdayValid = (hour > 9 || (hour === 9 && minute >= 0)) && (hour < 17 || (hour === 17 && minute <= 30));
-
-    // Weekend (Saturday and Sunday) check: Not before 10 AM and not after 4:30 PM
-    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-    const isWeekendValid = (hour > 10 || (hour === 10 && minute >= 0)) && (hour < 16 || (hour === 16 && minute <= 30));
-
-    // If the time is outside the valid range, show a warning and return
-    if (!(isWeekday && isWeekdayValid) && !(isWeekend && isWeekendValid)) {
-        // toast.warning("Sorry, We aren't available at that time.");
-        toast.custom((t) => (
-          <div style={{fontFamily:'Clash Grotesk'}} className='bg-amber-50 border-1 border border-amber-300 px-3 w-full py-2 text-amber-500 rounded-xl shadow-2xl'>
-            <div className='flex flex-row gap-2 text-base items-center'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
-  <path fillRule="evenodd" d="M6.701 2.25c.577-1 2.02-1 2.598 0l5.196 9a1.5 1.5 0 0 1-1.299 2.25H2.804a1.5 1.5 0 0 1-1.3-2.25l5.197-9ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 1 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
-</svg>
-<span>Sorry, we aren't available at that period.</span></div>
-             <div className=' flex flex-col mt-4'>
-            <span className='text-lg font-semibold'>Booking Hours:</span>
-            <table className="mt-1 border-collapse border border-amber-300">
-  {/* <thead>
-    <tr>
-      <th className="border border-amber-300 p-2">Day</th>
-      <th className="border border-amber-300 p-2">Time</th>
-    </tr>
-  </thead> */}
-  <tbody>
-    <tr>
-      <td className="border border-amber-300 p-2 font-semibold">Weekdays</td>
-      <td className="border border-amber-300 p-2">9 : 00 AM - 5 : 30 PM</td>
-    </tr>
-    <tr>
-      <td className="border border-amber-300 p-2 font-semibold">Weekends</td>
-      <td className="border border-amber-300 p-2">10 : 00 AM - 4 : 30 PM</td>
-    </tr>
-  </tbody>
-</table>
-
-
-             </div>
-          </div>
-        ));
-        setQueryLoading(false);  // Reset loading state
-        return;  // Prevent form submission
-    }
 
     // If no validation errors, reset validation error state and proceed with form submission
     setValidationErrorsAvailable(false);
@@ -231,7 +142,6 @@ const Requestquote = () => {
         name,
         email,
         phone,
-        visitDate,
         brand,
         device: deviceValue,
         issue: issueInput,
@@ -240,12 +150,12 @@ const Requestquote = () => {
 
     try {
         // Send a POST request to your API
-        const response = await axios.post('/api/book-repair-user', { formData });
-        await addDoc(collection(db, "bookRepair"), formData);  // Save to your collection
+        const response = await axios.post('/api/request-a-quote', { formData });
+        await addDoc(collection(db, "requestQuote"), formData);  // Save to your collection
 
         if (response.data.success) {
             // Clear all input fields if submission was successful
-            toast.success('Successfully made a repair booking. P.S. Check your email');
+            toast.success('Successfully requested a quote.');
 
             setName('');
             setEmail('');
@@ -399,7 +309,7 @@ const Requestquote = () => {
       value={deviceValue}
       error={deviceValidationError}
     //   prefix={<Icon source={SearchIcon} tone="base" />}
-      placeholder="Select or enter device"
+      placeholder="Select or type your device"
       autoComplete="off"
               requiredIndicator 
 
@@ -454,6 +364,8 @@ const Requestquote = () => {
                             autoComplete="off" 
                             requiredIndicator // Add requiredIndicator attribute
                             error={nameValidationError}
+                            placeholder='Enter your name'
+
                         />
                     </div>
                     <div className="w-full md:w-1/2">
@@ -465,6 +377,8 @@ const Requestquote = () => {
                             autoComplete="off" 
                             error={emailValidationError}
                             requiredIndicator // Add requiredIndicator attribute
+                            placeholder='Enter your email'
+
                         />
                     </div>
                 </div>
@@ -478,70 +392,27 @@ const Requestquote = () => {
                             autoComplete="off" 
                             requiredIndicator // Add requiredIndicator attribute
                             error={phoneValidationError}
+                            placeholder='Enter your phone'
+
                         />
+                        
                     </div>
-                    <div className="w-full md:w-1/2">
-                        <Popover
-                            active={visible}
-                            autofocusTarget="none"
-                            preferredAlignment="left"
-                            fullWidth
-                            preferInputActivator={false}
-                            preferredPosition="below"
-                            preventCloseOnChildOverlayClick
-                            onClose={handleOnClose}
-                            activator={
-                                <div className='flex flex-row gap-4'>
-                                  <TextField
-                                      role="combobox"
-                                      label={"Date to visit"}
-                                      suffix={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
-                                          <path fillRule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clipRule="evenodd" />
-                                      </svg>}
-                                      value={visitDate}
-                                      onFocus={() => setVisible(true)}
-                                      onChange={handledeviceValueChange}
-                                      autoComplete="off"
-                                      requiredIndicator // Add requiredIndicator attribute
-                                  />
-                                  <TextField
-                                    label="Select Time"
-                                    type="time"  // Use time input type
-                                    value={selectedTime}
-                                    suffix={ClockIcon}
-                                    
-                                    onChange={handleTimeChange}
-                                    requiredIndicator
-                                />
-                                </div>
-                            }
-                        >
-                            <Card>
-                                <DatePicker
-                                    month={month}
-                                    year={year}
-                                    selected={selectedDate}
-                                    onMonthChange={handleMonthChange}
-                                
-                                    onChange={handleDateSelection}
-                                />
-                            </Card>
-                        </Popover>
-                    </div>
-                </div>
-                <div className='w-full flex flex-col lg:flex-row gap-4'>
                     <div className="w-full md:w-1/2">
                       
-                        <Select
-      label="Brand"
-      options={uniqueCompanies}
-      onChange={handleBrandChange}
-      value={brand}
-      requiredIndicator // Add requiredIndicator attribute
-
-    />
-                    </div>
-                    <div className="w-full md:w-1/2">
+                    <Select
+  label="Brand"
+  options={[{ value: '', label: 'Select a brand' }, ...uniqueCompanies]}
+  onChange={handleBrandChange}
+  value={brand}
+  requiredIndicator // Add requiredIndicator attribute
+  error={brandValidationError}
+/>
+                  </div>
+                    
+                </div>
+                <div className='w-full flex flex-col lg:flex-row gap-4'>
+                    
+                    <div className="w-full ">
                        
   
      <Autocomplete
@@ -562,7 +433,7 @@ const Requestquote = () => {
         onChange={updateIssueText}
         label="Issue"
         value={issueInput}
-        placeholder="Select or enter issue"
+        placeholder="Select or type your issue"
         autoComplete="off"
         error={issueValidationError}
         requiredIndicator // Add requiredIndicator attribute
@@ -571,7 +442,7 @@ const Requestquote = () => {
   />
                 </div>
                 <div className='mt-4'>
-                    <Button loading={queryLoading} onClick={handleSubmit} variant='primary'>Book Repair</Button> {/* Change to type='submit' */}
+                    <Button loading={queryLoading} onClick={handleSubmit} variant='primary'>Request a quote</Button> {/* Change to type='submit' */}
                 </div>
             </form>
             <p className="text-base mt-8 text-left text-zinc-500">
@@ -581,4 +452,4 @@ const Requestquote = () => {
     );
 };
 
-export default Bookrepair;
+export default Requestquote;

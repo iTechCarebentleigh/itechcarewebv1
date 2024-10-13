@@ -15,7 +15,7 @@ import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
+import Requestquote from './requestquote/requestquote';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
@@ -54,10 +54,10 @@ const Herocarousel = () => {
 
   const [value, setValue] = useState('Book Repair');
 
-  const handleChange = useCallback(
-    (_checked, newValue) => setValue(newValue),
-    []
-  );
+  const handleChange = useCallback((newValue) => {
+    console.log('Selected:', newValue); // Add this line
+    setValue(newValue);
+  }, []);
 
   return (
     <section className="flex flex-col items-center relative   bg-slate-50">
@@ -222,32 +222,35 @@ const Herocarousel = () => {
             onClick={() => setIsClicked(true)}  // Set isClicked to true on click
 
       >
-        <div id="scroll-container" style={{zIndex:2}} className="w-full lg:w-[620px] bg-white p-6 rounded-xl shadow-lg flex flex-col gap-4">
-          <div className="flex flex-row gap-2 ">
-            <LegacyStack horizontal>
-              <RadioButton
-                label="Book Repair"
-                checked={value === 'Book Repair'}
-                id="Book Repair"
-                name="accounts"
-                onChange={handleChange}
-              />
-              <RadioButton
-                label="Request a quote"
-                id="Request a quote"
-                name="accounts"
-                checked={value === 'Request a quote'}
-                onChange={handleChange}
-              />
-            </LegacyStack>
-          </div>
-          
-            <div className='flex flex-col gap-2'>
-            <h1 className="text-2xl mb-4">Book a Repair</h1>
+        <div id="scroll-container" style={{ zIndex: 2 }} className="w-full lg:w-[620px] bg-white p-6 rounded-xl shadow-lg flex flex-col gap-4">
+      <div className="flex flex-row gap-2">
+        <LegacyStack horizontal>
+          <RadioButton
+            label="Book Repair"
+            checked={value === 'Book Repair'}
+            id="Book Repair"
+            name="accounts"
+            onChange={() => handleChange('Book Repair')}
+          />
+          <RadioButton
+            label="Request a quote"
+            id="Request a quote"
+            name="accounts"
+            checked={value === 'Request a quote'}
+            onChange={() => handleChange('Request a quote')}
+          />
+        </LegacyStack>
+      </div>
 
-              <Bookrepair/></div>
-          
-        </div>
+      <div className='flex flex-col gap-2'>
+        <h1 className="text-2xl mb-4">{value}</h1>
+
+        {/* Conditional rendering based on the selected radio button */}
+        {value === 'Book Repair' ? <Bookrepair /> : ''}
+        {value === 'Request a quote' ? <Requestquote /> : ''}
+
+      </div>
+    </div>
       </div>
     </section>
   );
