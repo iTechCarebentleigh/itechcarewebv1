@@ -190,24 +190,24 @@ const Bookrepair = () => {
 
     if (!(isWeekday && isWeekdayValid) && !(isWeekend && isWeekendValid)) {
         toast.custom((t) => (
-            <div className="bg-amber-50 border border-amber-300 px-3 py-2 text-amber-500 rounded-xl shadow-2xl">
+            <div style={{fontFamily:"var(--typography-font-family-sansserif)"}} className="w-full md:w-[350px] bg-amber-50 border border-amber-300 px-3 py-2 text-amber-500 rounded-xl shadow-2xl">
                 <div className="flex gap-2 items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="size-4" fill="currentColor" viewBox="0 0 16 16">
                         <path fillRule="evenodd" d="M6.701 2.25c.577-1 2.02-1 2.598 0l5.196 9a1.5 1.5 0 0 1-1.299 2.25H2.804a1.5 1.5 0 0 1-1.3-2.25l5.197-9ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 1 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
                     </svg>
                     <span>Sorry, we aren't available at that period.</span>
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 w-full">
                     <span className="text-lg font-semibold">Booking Hours:</span>
-                    <table className="mt-1 border-collapse border border-amber-300">
+                    <table className="mt-1 border-collapse border border-amber-300 w-full">
                         <tbody>
                             <tr>
                                 <td className="border border-amber-300 p-2 font-semibold">Weekdays</td>
-                                <td className="border border-amber-300 p-2">9:00 AM - 5:30 PM</td>
+                                <td className="border border-amber-300 p-2 flex justify-end">9:00 AM - 5:30 PM</td>
                             </tr>
                             <tr>
                                 <td className="border border-amber-300 p-2 font-semibold">Weekends</td>
-                                <td className="border border-amber-300 p-2">10:00 AM - 4:30 PM</td>
+                                <td className="border border-amber-300 p-2 flex justify-end">10:00 AM - 4:30 PM</td>
                             </tr>
                         </tbody>
                     </table>
@@ -425,7 +425,7 @@ const Bookrepair = () => {
     return (
         <div className="p-0 relative " >
             <form onSubmit={handleSubmit} className='flex flex-wrap gap-4'>
-                <div className='w-full flex flex-col lg:flex-row gap-4'>
+                <div className='w-full flex flex-col md:flex-row gap-4'>
                     <div className="w-full md:w-1/2">
                         <TextField 
                             label="Name" 
@@ -451,7 +451,7 @@ const Bookrepair = () => {
                         />
                     </div>
                 </div>
-                <div className='w-full flex flex-col lg:flex-row gap-4'>
+                <div className='w-full flex flex-col md:flex-row gap-4'>
                     <div className="w-full md:w-1/2">
                         <TextField 
                             label="Phone" 
@@ -514,7 +514,7 @@ const Bookrepair = () => {
                         </Popover>
                     </div>
                 </div>
-                <div className='w-full flex flex-col lg:flex-row gap-4'>
+                <div className='w-full flex flex-col md:flex-row gap-4'>
                     <div className="w-full md:w-1/2">
                     <Select
   label="Brand"

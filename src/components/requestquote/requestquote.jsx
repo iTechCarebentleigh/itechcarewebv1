@@ -354,7 +354,7 @@ const Requestquote = () => {
     return (
         <div className="p-0 relative " >
             <form onSubmit={handleSubmit} className='flex flex-wrap gap-4'>
-                <div className='w-full flex flex-col lg:flex-row gap-4'>
+                <div className='w-full flex flex-col md:flex-row gap-4'>
                     <div className="w-full md:w-1/2">
                         <TextField 
                             label="Name" 
@@ -381,7 +381,7 @@ const Requestquote = () => {
                         />
                     </div>
                 </div>
-                <div className='w-full flex flex-col lg:flex-row gap-4'>
+                <div className='w-full flex flex-col md:flex-row gap-4'>
                     <div className="w-full md:w-1/2">
                         <TextField 
                             label="Phone" 
@@ -409,7 +409,7 @@ const Requestquote = () => {
                   </div>
                     
                 </div>
-                <div className='w-full flex flex-col lg:flex-row gap-4'>
+                <div className='w-full flex flex-col md:flex-row gap-4'>
                     
                     <div className="w-full ">
                        

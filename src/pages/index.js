@@ -18,7 +18,7 @@ import Herocarousel from "@/components/herocarousel";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({products,shopImages,faqs}) {
+export default function Home({products,shopImages}) {
 
 
 
@@ -456,7 +456,7 @@ export default function Home({products,shopImages,faqs}) {
 </section>
 {/* <Devices/>
 <Inventory/> */}
-<FAQ faqs={faqs}/>
+<FAQ />
 <Footer/>
     </main>
     </>
@@ -483,16 +483,14 @@ export async function getServerSideProps() {
    
 }`;
 
-const queryfaqs = `*[_type == "faqs"]`;
   const products = await client.fetch(queryProduct);
   const shopImages = await client.fetch(queryimage);
-  const faqs = await client.fetch(queryfaqs);
 
   return {
     props: {
       products,
       shopImages,
-      faqs
+      
     },
   };
 }
