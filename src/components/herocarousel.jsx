@@ -171,8 +171,10 @@ const Herocarousel = () => {
         need.</p>
       </div>
       <div>
-        <Button icon={CartIcon} fullWidth={false}><span className='ml-1'>Shop Now</span></Button>
-      </div>
+<Link href="/products">
+          <Button icon={CartIcon} fullWidth={false}><span className='ml-1'>Shop Now</span></Button>
+  
+</Link>      </div>
     </div>
   </SwiperSlide>
 
@@ -208,8 +210,10 @@ const Herocarousel = () => {
         it to you in no time.</p>
       </div>
       <div>
-        <Button fullWidth={false}>Learn More</Button>
-      </div>
+<Link href="requestquote">
+          <Button fullWidth={false}>Learn More</Button>
+  
+</Link>      </div>
     </div>
   </SwiperSlide>
 </Swiper>

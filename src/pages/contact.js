@@ -10,13 +10,13 @@ import Bookrepair from "@/components/bookrepair/bookrepair";
 import FAQ from "@/components/faq";
 import MetaTags from "@/components/metatags";
 
-export default function Bookarepair() {
+export default function Contact() {
   const [isCompleted, setIsCompleted] = useState(false);
 
   return (
     <>
       <Head>
-        <title>Book a Repair</title>
+        <title>Contact us</title>
        <MetaTags keywords="Mobile Repair, Book a repair, Make a visit today" title="Book a Repair" description="Make a booking today for your device so that you dont leave out."/>
       </Head>
 

@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Icon, Popover, Card, TextField, Button, DatePicker,Autocomplete } from '@shopify/polaris';
+import { Icon, Popover, Card, TextField,  DatePicker,Autocomplete } from '@shopify/polaris';
+import { Button as PolarisButton, ButtonProps } from '@shopify/polaris';
+
 import Link from 'next/link';
 import axios from 'axios';
 import {Select} from '@shopify/polaris';
@@ -459,6 +461,8 @@ const Bookrepair = () => {
                             value={phone} 
                             onChange={handlePhoneChange} 
                             autoComplete="off" 
+                            prefix="+61"
+
                             requiredIndicator // Add requiredIndicator attribute
                             error={phoneValidationError}
                             placeholder='Enter your phone'
@@ -556,7 +560,9 @@ const Bookrepair = () => {
   />
                 </div>
                 <div className='mt-4'>
-                    <Button loading={queryLoading} onClick={handleSubmit} variant='primary'>Book Repair</Button> {/* Change to type='submit' */}
+                <PolarisButton  submit
+                loading={queryLoading} onClick={handleSubmit} variant='primary'>Book Repair    </PolarisButton>
+
                 </div>
             </form>
             <p className="text-base mt-8 text-left text-zinc-500">

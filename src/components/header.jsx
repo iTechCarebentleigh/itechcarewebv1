@@ -136,7 +136,7 @@ export default function Header() {
 
 
   const handleCall = () => {
-    window.location.href = 'tel:+610490125225';
+    window.location.href = `tel:${process.env.NEXT_PUBLIC_BUSINESS_CELL_NUMBER}`;
   };
 
   return (
@@ -266,7 +266,7 @@ export default function Header() {
   <CustomLink href={'/products'}>Product Listings</CustomLink>
   <CustomLink href={'/requestquote'}>Request a quote</CustomLink>
 
-                <CustomLink href={'/products'}>Contact</CustomLink>
+                <CustomLink href={'/contact'}>Contact</CustomLink>
                 <div onClick={handleCall} className={`text-white cursor-pointer text-lg hover:underline flex flex-row gap-2 items-center`}>
                   <svg
     width={20}
@@ -280,7 +280,7 @@ export default function Header() {
       fill="#F24241"
     />
   </svg>
-  Call: 9191 2669</div>
+  {`Call: ${process.env.NEXT_PUBLIC_BUSINESS_CELL_NUMBER}`}</div>
   
               </div>
   <div className="flex flex-row gap-4">
@@ -314,7 +314,7 @@ export default function Header() {
       <div onClick={()=>{
   setISToggled(!isToggled)
 }}>
-  <CustomLink href={'/products'}>Contact</CustomLink></div>
+  <CustomLink href={'/contact'}>Contact</CustomLink></div>
 <div onClick={() => { handleCall(); setISToggled(!isToggled); }} className={`text-white cursor-pointer text-lg hover:underline flex flex-row gap-2 items-center`}>
 <svg
     width={20}
@@ -328,7 +328,7 @@ export default function Header() {
       fill="#F24241"
     />
   </svg>
-  Call: 9191 2669</div>
+  {`Call: ${process.env.NEXT_PUBLIC_BUSINESS_CELL_NUMBER}`}</div>
       </div></div>
  
 

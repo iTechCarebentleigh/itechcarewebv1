@@ -176,8 +176,8 @@ export default function Privacypolicy() {
             <address className="text-lg text-zinc-900 font-normal mt-8">
             
             <div className="text-lg text-zinc-900 font-normal mt-8">iTech Care<span className="block">359 Centre road, Bentleigh VIC 3204</span> 
-            <span className="mt-8">Email: itechcare.bentleigh@gmail.com</span>
-            <span className="block">Phone: +61 9191 2669</span>
+            <span className="mt-8">{`Email: ${process.env.NEXT_PUBLIC_BUSINESS_EMAIL}`}</span>
+            <span className="block">{`Phone: ${process.env.NEXT_PUBLIC_BUSINESS_CELL_NUMBER}`}</span>
             </div>
               </address>                     
             </li>

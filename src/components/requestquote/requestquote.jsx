@@ -1,6 +1,9 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Icon, Popover, Card, TextField, Button, DatePicker,Autocomplete } from '@shopify/polaris';
+import { Icon, Popover, Card, TextField, DatePicker,Autocomplete } from '@shopify/polaris';
 import Link from 'next/link';
+
+import { Button as PolarisButton, ButtonProps } from '@shopify/polaris';
+
 import axios from 'axios';
 import {Select} from '@shopify/polaris';
 import { collection, addDoc, getDocs, serverTimestamp } from "firebase/firestore"; // Add serverTimestamp
@@ -391,6 +394,7 @@ const Requestquote = () => {
                             autoComplete="off" 
                             requiredIndicator // Add requiredIndicator attribute
                             error={phoneValidationError}
+                            prefix="+61"
                             placeholder='Enter your phone'
 
                         />
@@ -441,7 +445,8 @@ const Requestquote = () => {
   />
                 </div>
                 <div className='mt-4'>
-                    <Button loading={queryLoading} onClick={handleSubmit} variant='primary'>Request a quote</Button> {/* Change to type='submit' */}
+                                    <PolarisButton  submit
+ loading={queryLoading} onClick={handleSubmit} variant='primary'>Request a quote</ PolarisButton> {/* Change to type='submit' */}
                 </div>
             </form>
             <p className="text-base mt-8 text-left text-zinc-500">

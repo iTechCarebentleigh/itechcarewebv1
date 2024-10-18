@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 export default async function handler(req, res) {
   const { placeId } = req.query;
 
-  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${process.env.NEXT_PUBLIC_PLACES_ID}&fields=name,rating,reviews&key=${process.env.NEXT_PUBLIC_PLACES_API_KEY}`;
+  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${process.env.PLACES_ID}&fields=name,rating,reviews&key=${process.env.PLACES_API_KEY}`;
 
   try {
     const response = await fetch(url);
