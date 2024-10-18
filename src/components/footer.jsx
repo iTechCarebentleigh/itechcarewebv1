@@ -127,7 +127,7 @@ export default function Footer() {
   </svg>
   
   
-  <span className="text-lg font-medium">+61 9191 2669, 0490125225</span>
+  <span className="text-lg font-medium">{`${process.env.NEXT_PUBLIC_BUSINESS_CELL_NUMBER}, ${process.env.NEXT_PUBLIC_BUSINESS_LANDLINE_NUMBER}`}</span>
      </div>
  </div>
    <div className="flex flex-col gap-4">

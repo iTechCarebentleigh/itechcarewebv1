@@ -1,6 +1,7 @@
 import { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
 
+
 export default function Document() {
   return (
     <Html lang="en">
@@ -11,6 +12,8 @@ export default function Document() {
         />
       </Head>
       <body className="bg-slate-200">
+       
+
         <Main />
         <NextScript />
         

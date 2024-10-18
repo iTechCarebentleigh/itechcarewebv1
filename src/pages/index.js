@@ -3,14 +3,19 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 // import { collection, addDoc, getDocs } from "firebase/firestore"; 
 // import { db } from "../../firebase";
-import { Usersform,Header,Footer,Productcard } from "@/components";
+import { Usersform,Header,Footer,Productcard,Reviews } from "@/components";
 import Head from "next/head";
 import {Button} from '@shopify/polaris';
 import Link from "next/link";
 import { client } from '../../sanity/lib/client'
 import { urlForImage } from "./../../sanity/lib/image";
 import Marquee from 'react-fast-marquee';
-
+import Devices from "@/components/brandsandmodels";
+import Inventory from '@/components/inventory';
+import FAQ from "@/components/faq";
+import Herocarousel from "@/components/herocarousel";
+import MetaTags from "@/components/metatags";
+import GoogleMap from "@/components/googlemaps";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,54 +35,13 @@ export default function Home({products,shopImages}) {
     <>
     <Head>
       <title>iTech Care-Top Repairs, Quality Accessories</title>
+           {/* Basic Meta Tags */}
+           <meta charSet="UTF-8" />
+       <MetaTags/>
     </Head>
     <main >
-<Header/>
-<section className=" xl:h-screen px-4 py-0 ">
-<div className="flex gap-4 container flex-col justify-center	  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
-<div className="flex flex-col h-fit  gap-12">
-  <div className="w-full lg:max-w-2xl  flex flex-col gap-8">
-   <div className="w-full mt-40  xl:mt-0 flex flex-col gap-4 ">
-      <h1 className="text-zinc-950 text-4xl lg:text-6xl">Bringing Your Broken Electronics Back to Life</h1>
-      <p className="text-lg lg:text-2xl text-zinc-500">Give your device the  care that it deserves.</p>
-   </div>
-    <div className="w-fit gap-4 flex flex-row items-center">
-        <Button variant="primary" size="medium"   onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("contact-section");
-              }}>Get Free Quote</Button>
-        <Button icon={
-          <svg
-          width={20}
-          height={20}
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M5.05025 4.05025C7.78392 1.31658 12.2161 1.31658 14.9497 4.05025C17.6834 6.78392 17.6834 11.2161 14.9497 13.9497L10 18.8995L5.05025 13.9497C2.31658 11.2161 2.31658 6.78392 5.05025 4.05025ZM10 11C11.1046 11 12 10.1046 12 9C12 7.89543 11.1046 7 10 7C8.89543 7 8 7.89543 8 9C8 10.1046 8.89543 11 10 11Z"
-            fill="#27272A"
-          />
-        </svg>
-        
-      } size="medium" onClick={(e) => {
-        e.preventDefault();
-        scrollToSection("address-section");
-      }}>Visit us Today</Button>
-    </div>
-  </div>
 
-</div>
-<div className=" xl:absolute right-0 bottom-0 w-full  xl:md:w-5/12">
-<div className="w-full relative">
-<img  src="/static-images/hero-banner.png" alt="hero-image"/>
-
-</div>
-</div>
-</div>
-</section>
+<Herocarousel/>
 <section className="bg-white px-4">
 <div className="flex gap-4 container flex-col justify-center	items-center  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className="py-24 w-full justify-center flex flex-col gap-16">
@@ -305,17 +269,23 @@ export default function Home({products,shopImages}) {
   </div>
 </div>
 </section>
-<section id="about-section" className="bg-semantic-primary-600 px-4  relative">
+<section id="about-section" className="bg-[var(--colors-brand-primary-600)] px-4  relative">
   <img src="/static-images/logo-big.png" className="w-96 hidden xl:block absolute -top-32 right-0"/>
 <div className="flex gap-4 container flex-col 	items-start  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
 <div className="py-24 flex flex-col gap-24">
   <div className=" w-full xl:w-3/5 justify-start flex flex-col gap-10">
-    <h2 className="text-4xl w-fit text-white">Who We Are?
-    <span className="block">Or What Just Makes Us Different</span>
-     </h2>
-     <p className="text-lg lg:text-2xl	text-zinc-300">At iTech Care, we offer expert repair services for all kinds of mobile phones, including cracked screens, water damage, charging issues, and more. </p>
+<div className="flex flex-col gap-5">
+      <h2 className="text-4xl w-fit text-white">Who We Are?
+      <span className="block">Or What Just Makes Us Different</span>
+       </h2>
+       <p className="text-lg lg:text-2xl	text-zinc-300">At iTech Care, we offer expert repair services for all kinds of mobile phones, including cracked screens, water damage, charging issues, and more. </p>
+</div>
+     <Link href={'/repairs'}>
+       <Button >Explore Repairs</Button>
+  
+</Link> 
      </div>
-     <div className="flex flex-wrap gap-4 justify-center items-center  px-4">
+    <div className="flex flex-wrap gap-4 justify-center items-center  px-4">
      <div className="h-96 w-80 items-center p-4 flex flex-col gap-4">
       <div className="h-3/5 flex justify-center"><img  src="/static-images/specials/screencrack.png" alt="screencrack"/></div>
       <div className="flex flex-col gap-4 text-white">
@@ -403,15 +373,10 @@ export default function Home({products,shopImages}) {
 
 
   </div>
-  <div className="w-full xl:w-1/2 h-96 xl:h-100 bg-slate-500">
-  <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.533571636496!2d145.0362127!3d-37.9179636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad66944ed5f4ec5%3A0x631ede2e27b5a804!2s359%20Centre%20Rd%2C%20Bentleigh%20VIC%203204!5e0!3m2!1sen!2sau!4v1720267970873!5m2!1sen!2sau"
- className="h-full w-full"
-  style={{ border: 0 }}
-  allowFullScreen=""
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-/>
+  <div className="w-full xl:w-1/2 h-96 xl:h-100 ">
+ 
+      <GoogleMap zoomValue={18} theme="light" />
+
 </div>
 </div>
 <div className="w-full py-4 bg-gray-50"> 
@@ -422,7 +387,7 @@ export default function Home({products,shopImages}) {
       <img 
       className="rounded-md mr-4 w-60 h-52 lg:w-96 lg:h-80 "
         src={urlForImage(shop.image).url()} 
-        key={shop.id} // Make sure to use a unique identifier
+        key={shop.image.asset._ref} // Make sure to use a unique identifier
         // style={{height: '420px', width: '480px'}} 
         alt="Shop Image" // Add alt text for accessibility
       />
@@ -432,6 +397,7 @@ export default function Home({products,shopImages}) {
 
 </div>
 </section>
+<Reviews/>
 <section  id="contact-section" className="bg-white px-4">
 <div className="flex gap-16 py-24 container flex-col xl:flex-row  justify-center items-center  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className="w-full md:w-4/5 lg:w-2/5  justify-center items-center flex flex-col gap-8">
@@ -444,6 +410,9 @@ export default function Home({products,shopImages}) {
 
 </div>
 </section>
+{/* <Devices/>
+<Inventory/> */}
+<FAQ />
 <Footer/>
     </main>
     </>
@@ -476,7 +445,8 @@ export async function getServerSideProps() {
   return {
     props: {
       products,
-      shopImages
+      shopImages,
+      
     },
   };
 }

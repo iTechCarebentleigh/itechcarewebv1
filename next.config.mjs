@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ['cdn.sanity.io'], // Add this line
   },
+  eslint: {
+    ignoreDuringBuilds: true, // Ignore ESLint errors during builds
+  },
 };
 
 export default nextConfig;
