@@ -2,6 +2,7 @@
 import { Global, css } from '@emotion/react';
 import { Cascader, Space ,Divider} from '@arco-design/web-react';
 import { Sling as Hamburger } from 'hamburger-react'
+import { client } from '../../sanity/lib/client';
 
 import { useState, useEffect } from "react";
 import { Button } from '@shopify/polaris';
@@ -13,76 +14,80 @@ const Customnav = ({ href, children, className = "" }) => (
   </Link>
 );
 
-const options = [
-  {
-    value: 'Phone Repair',
-    label: 'Phone Repair',
-    children: [
-      {
-        value: 'Screen Repair',
-        label: <Customnav href="/datunli">Screen Repair</Customnav>, // Make this a link
+// const options = [
+//   {
+//     value: 'Phone Repair',
+//     label: 'Phone Repair',
+//     children: [
+//       {
+//         value: 'Screen Repair',
+//         label: <Customnav href="/datunli">Screen Repair</Customnav>, // Make this a link
       
-      },
-      {
-        value: 'Charging port',
-        label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
+//       },
+//       {
+//         value: 'Charging port',
+//         label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
       
-      },
-    ],
-  },
-  {
-    value: 'Tablet Repair',
-    label: 'Tablet Repair',
-    children: [
-      {
-        value: 'Screen Repair',
-        label: <Customnav href="/datunli">Screen Repair</Customnav>, // Make this a link
+//       },
+//     ],
+//   },
+//   {
+//     value: 'Tablet Repair',
+//     label: 'Tablet Repair',
+//     children: [
+//       {
+//         value: 'Screen Repair',
+//         label: <Customnav href="/datunli">Screen Repair</Customnav>, // Make this a link
       
-      },
-      {
-        value: 'Charging port',
-        label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
+//       },
+//       {
+//         value: 'Charging port',
+//         label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
       
-      },
-      {
-        value: 'Charging port',
-        label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
+//       },
+//       {
+//         value: 'Charging port',
+//         label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
       
-      },
-      {
-        value: 'Charging port',
-        label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
+//       },
+//       {
+//         value: 'Charging port',
+//         label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
       
-      },
-      {
-        value: 'Charging port',
-        label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
+//       },
+//       {
+//         value: 'Charging port',
+//         label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
       
-      },
-       {
-        value: 'Charging port',
-        label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
+//       },
+//        {
+//         value: 'Charging port',
+//         label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
       
-      },
-    ],
-  },
-  {
-    value: 'Laptop Repair',
-    label: 'Laptop Repair',
-    children: [
-      {
-        value: 'Screen Repair',
-        label: <Customnav href="/datunli">Screen Repair</Customnav>, // Make this a link
+//       },
+//     ],
+//   },
+//   {
+//     value: 'Laptop Repair',
+//     label: 'Laptop Repair',
+//     children: [
+//       {
+//         value: 'Screen Repair',
+//         label: <Customnav href="/datunli">Screen Repair</Customnav>, // Make this a link
       
-      },
-      {
-        value: 'Charging port',
-        label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
+//       },
+//       {
+//         value: 'Charging port',
+//         label: <Customnav href="/datunli">Datunli</Customnav>, // Make this a link
       
-      },
-    ],
-  },
-];
+//       },
+//     ],
+//   },
+// ];
+
+
+
+
 
 const CustomLink = ({ href, children, className = "" }) => (
   <Link href={href} className={`text-white text-lg hover:underline ${className}`}>
@@ -93,6 +98,37 @@ const CustomLink = ({ href, children, className = "" }) => (
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isToggled,setISToggled]=useState(false)
+const[repair,setrepair]=useState()
+const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchrepair = async () => {
+      try {
+        const queryrepair = `*[_type == "repairs"]`;
+        const fetchedrepair = await client.fetch(queryrepair);
+        setrepair(fetchedrepair[0]);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError("Failed to load FAQs.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchrepair();
+  },[])
+
+  console.log(repair)
+
+  const options = (repair?.repairs || []).map((category) => ({
+    value: category.categoryName,
+    label: category.categoryName,
+    children: category.repairs.map((repairitem) => ({
+      value: repairitem.repairItemTitle,
+      label: <Customnav href={`/repairs/${category.categoryName}/${repairitem.slug.current}`}>{repairitem.repairItemTitle}</Customnav>,
+    })),
+  }));
+
   let touchStartY = 0; // To track the starting point of touch on mobile
 
   useEffect(() => {
@@ -309,7 +345,7 @@ export default function Header() {
 }}><CustomLink href={'/products'}>Product Listings</CustomLink></div>
 <div onClick={()=>{
   setISToggled(!isToggled)
-}}><CustomLink href={'/requestquote'}>Request quote</CustomLink></div>
+}}><CustomLink href={'/requestquote'}>Request a quote</CustomLink></div>
       
       <div onClick={()=>{
   setISToggled(!isToggled)
@@ -337,3 +373,4 @@ export default function Header() {
     </>
   );
 }
+

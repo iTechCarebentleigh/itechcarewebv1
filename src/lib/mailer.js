@@ -6,7 +6,6 @@ export const sendEmail = async (type, formData) => {
   const noreplyBusinessEmail = process.env.EMAIL_FROM;;
   const TOKEN = process.env.MAILTRAP_TOKEN; // Mailtrap token from environment variables
   const templateUuid = "aa8d826c-5510-48d6-b3c0-615b2e9575f7"; // Mailtrap template UUID for the user email
-
   // Validate environment variables
   if (!process.env.MAILTRAP_HOST || !process.env.MAILTRAP_USER || !process.env.MAILTRAP_PASS) {
     throw new Error('Mailtrap configuration is not set in environment variables.');
@@ -27,7 +26,6 @@ export const sendEmail = async (type, formData) => {
     host: process.env.MAILTRAP_HOST,
     port: 587,
     secure: false,
-    token: TOKEN,
 
     auth: {
       user: process.env.MAILTRAP_USER,

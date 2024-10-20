@@ -15,8 +15,7 @@ import Inventory from '@/components/inventory';
 import FAQ from "@/components/faq";
 import Herocarousel from "@/components/herocarousel";
 import MetaTags from "@/components/metatags";
-import GoogleMap from "@/components/googlemaps";
-
+import { MapComponent } from "@/components/googlemaps";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -374,8 +373,7 @@ export default function Home({products,shopImages}) {
 
   </div>
   <div className="w-full xl:w-1/2 h-96 xl:h-100 ">
- 
-      <GoogleMap zoomValue={18} theme="light" />
+      <MapComponent  />
 
 </div>
 </div>

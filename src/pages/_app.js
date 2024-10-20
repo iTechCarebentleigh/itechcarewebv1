@@ -2,7 +2,8 @@ import "@/styles/globals.css";
 import "@/style-dictionary-dist/variables.css";
 import '@arco-design/web-react/dist/css/arco.css';
 import { Toaster } from 'sonner'
-
+import { DefaultSeo } from 'next-seo';
+import SEO from '../../next-seo.config';
 import { AppProvider } from '@shopify/polaris';
 import '@shopify/polaris/build/esm/styles.css';
 import translations from '@shopify/polaris/locales/en.json';
@@ -20,22 +21,13 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 
 export default function App({ Component, pageProps }) {
-  // useLayoutEffect(() => {
-  //   const lenis = new Lenis();
-  //   lenis.on("scroll", () => {});
 
-  //   lenis.on("scroll", ScrollTrigger.update);
-
-  //   gsap.ticker.add((time) => {
-  //     lenis.raf(time * 550);
-  //   });
-
-  //   gsap.ticker.lagSmoothing(0);
-  // }, []);
  
   return (
     <AppProvider i18n={translations}>
       <Analytics />
+      <DefaultSeo {...SEO} />
+
       <Toaster richColors  />
       <Header/>
       <Component {...pageProps} />
