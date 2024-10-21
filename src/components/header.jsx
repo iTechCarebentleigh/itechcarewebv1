@@ -118,8 +118,7 @@ const [loading, setLoading] = useState(true);
     fetchrepair();
   },[])
 
-  console.log(repair)
-
+// console.log(repair)
   const options = (repair?.repairs || []).map((category) => ({
     value: category.categoryName,
     label: category.categoryName,

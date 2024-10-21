@@ -78,10 +78,10 @@ export default function Repairs({repairPage}) {
       ]}
        />
       <main>
-        <section className="bg-white px-4 bg-zinc-100">
+        <section className="bg-white px-4 bg-zinc-100 ">
           <div className="flex gap-0 container flex-col gap-4 lg:flex-row justify-between items-end mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
             <div className="w-full xl:w-2/4 py-28 xl:py-36 justify-center items-start flex justify-between flex-col gap-2">
-              <h1 className="text-5xl w-fit text-start">
+              <h1 className="text-4xl lg:text-5xl w-fit text-start">
                 Delivering <span className="text-[var(--colors-brand-primary-500)]">exceptional</span> repair service since <span className="text-[var(--colors-brand-primary-500)]">ages</span>.
               </h1>
               <p className="text-xl mb-2 text-zinc-500">Quick and reliable, our repair services will have your mobile devices, tablets, and laptops up and running in no time.</p>

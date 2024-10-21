@@ -38,18 +38,27 @@ export const repairItem = defineType({
       name: 'hero', // Hero section
       type: 'object',
       title: 'Hero Section',
+      validation: (rule) =>
+        rule
+          .required(),
       fields: [
         defineField({
           name: 'heroTitle',
           type: 'string',
           title: 'Hero Title',
           description: 'The main title displayed in the hero section.',
+          validation: (rule) =>
+            rule
+              .required()
         }),
         defineField({
           name: 'heroDescription',
           type: 'text',
           title: 'Hero Description',
           description: 'The supporting text for the hero section.',
+          validation: (rule) =>
+            rule
+              .required()
         }),
       ],
     }),
@@ -111,12 +120,18 @@ export const repairItem = defineType({
       options: {
         hotspot: true,
       },
+      validation: (rule) =>
+        rule
+          .required(),
       fields: [
         defineField({
           name: 'alt',
           type: 'string',
           title: 'Alt Text',
           description: 'A brief description of the image for accessibility.',
+          validation: (rule) =>
+            rule
+              .required()
         }),
       ],
     })
