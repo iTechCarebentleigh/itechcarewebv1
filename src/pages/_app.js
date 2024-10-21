@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }) {
   return (
     <AppProvider i18n={translations}>
       <Analytics />
-      <DefaultSeo {...SEO} />
+      {/* <DefaultSeo {...SEO} /> */}
 
       <Toaster richColors  />
       <Header/>
