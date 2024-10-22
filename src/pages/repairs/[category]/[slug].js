@@ -14,30 +14,30 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RepairPage({ repairFound, category }) {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    if (repairFound) {
-      setIsLoading(false);
-    }
-  }, [repairFound]);
 
-  if (isLoading) {
-    return <p>Loading...</p>; 
-  }
 
   const repair = repairFound.repairs[0].repairs;
   console.log("Repair in Component:", repair, category);
-
+  
+  
   return (
     <>
       <NextSeo
-        title={`${category.charAt(0).toUpperCase() + category.slice(1)} - ${repair.repairItemTitle}`}
-        description="hello sir" // Set your meta description here
-        openGraph={{
-          url: 'https://www.itechcare.com.au',
-          title: repair.repairItemTitle,
-          description: repair.metaDescription,
-        }}
-      />
+  title={`${category.charAt(0).toUpperCase() + category.slice(1)} - ${repair.repairItemTitle}`}
+  description={repair.metaDescription}
+  openGraph={{
+    url: 'https://www.itechcare.com.au',
+    title: repair.repairItemTitle,
+    description: repair.metaDescription,
+  }}
+  additionalMetaTags={[
+    {
+      name: 'keywords',
+      content: repair.metaTags ? repair.metaTags.join(', ') : '',
+    },
+  ]}
+/>
+
       <main>
         <section className="bg-white h-fit lg:h-[540px]">
           <div className="h-full w-full lg:px-0 flex flex-col justify-center relative">
@@ -76,6 +76,7 @@ export async function getServerSideProps(context) {
   try {
     const { category, slug } = params;
     console.log("Fetching data for category:", category, "and slug:", slug);
+    
     const queryRepair = `*[_type == "repairs"] {
       repairs[categoryName == $category] {
           repairs[slug.current == $slug][0]
@@ -85,6 +86,7 @@ export async function getServerSideProps(context) {
     const fetchedRepair = await client.fetch(queryRepair, { category, slug });
 
     if (!fetchedRepair) {
+      console.log("No repair found for the given category and slug");
       return {
         notFound: true,
       };
@@ -103,3 +105,4 @@ export async function getServerSideProps(context) {
     return { props: { repairFound: null, category: null } };
   }
 }
+

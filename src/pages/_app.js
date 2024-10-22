@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 import gsap from 'gsap';
 import Lenis from '@studio-freight/lenis';
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
+import Head from "next/head";
 // gsap.registerPlugin(ScrollTrigger);
 
 
@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }) {
   return (
     <AppProvider i18n={translations}>
       <Analytics />
-      {/* <DefaultSeo {...SEO} /> */}
+      <DefaultSeo {...SEO} />
 
       <Toaster richColors  />
       <Header/>

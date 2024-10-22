@@ -185,7 +185,7 @@ export async function getStaticPaths() {
   const paths = products.map((product) => ({
     params: { slug: product.slug },
   }));
-
+console.log(slug)
   return { paths, fallback: true };
 }
 
