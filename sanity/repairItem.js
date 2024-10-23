@@ -82,7 +82,21 @@ export const repairItem = defineType({
           name: 'position', // Position object
           type: 'object',
           title: 'Icon Position',
-          fields: [
+          description: (
+            <div>
+              <div style={{ color: 'orange',display:'flex',alignItems:'start',gap:'8px',borderRadius:'6px',padding:'12px',backgroundColor:'rgb(255 243 222)' }}>
+                <svg style={{marginTop:'4x'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+    <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+  </svg>
+  
+  <span style={{marginLeft:'4px'}}>
+    Note: Only enter two values (top/bottom & left/right), e.g. top:10 and left:10 or bottom:10 and right:10. <strong>Leave the unwanted fields empty</strong>
+    
+  </span>            
+  </div>
+  <img src=""></img>
+            </div>
+        ),          fields: [
             defineField({
               name: 'top',
               type: 'number',

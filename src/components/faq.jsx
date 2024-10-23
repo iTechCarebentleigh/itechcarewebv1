@@ -32,9 +32,9 @@ const FAQ = () => {
     <section className="flex flex-col items-center px-4 bg-zinc-50">
       <div className="flex gap-16 container flex-col lg:flex-row py-16 items-start mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
         <div className="flex flex-col gap-6 w-full">
-          <h1 className="text-4xl font-regular">
+          <h2 className="text-3xl font-regular">
             Frequently asked <span className="block text-[var(--colors-brand-primary-600)]">questions</span>
-          </h1>
+          </h2>
           <p className="text-zinc-400 text-xl font-regular">
             You ask, and we answer your frequently asked questions.
           </p>

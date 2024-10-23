@@ -44,7 +44,7 @@ export default function Home({products,shopImages}) {
 <section className="bg-white px-4">
 <div className="flex gap-4 container flex-col justify-center	items-center  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className="py-24 w-full justify-center flex flex-col gap-16">
-  <h2 className="text-4xl text-center">Brands we Fix and Sell
+  <h2 className="text-3xl text-center">Brands we Fix and Sell
    <span className="block">Everything you need under a roof</span></h2>
    <div className="flex flex-wrap gap-16 items-center justify-around px-16">
    <svg
@@ -148,7 +148,7 @@ export default function Home({products,shopImages}) {
 <div className="flex gap-4 container flex-col justify-start	items-start  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className="py-24 w-full justify-center flex flex-col gap-16">
   <div className="flex flex-row justify-between">
-    <h2 className="text-4xl text-left w-fit">Featured Postings</h2>
+    <h2 className="text-3xl text-left w-fit">Featured Postings</h2>
     <Link href="products">
     <Button className="w-fit" size="medium" variant="plain">View all</Button>
     </Link>
@@ -176,7 +176,7 @@ export default function Home({products,shopImages}) {
 <section className="bg-white px-4">
 <div className="flex gap-4 container flex-col   mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className="py-24 w-full justify-start flex flex-col gap-16">
-  <h2 className="text-4xl w-fit">What we have for you
+  <h2 className="text-3xl w-fit">What we have for you
    </h2>
    <div className="flex flex-wrap gap-4 justify-center items-center  px-8">
   <div className="h-96 w-60 bg-zinc-100 rounded-3xl p-6 flex flex-col gap-4">
@@ -274,7 +274,7 @@ export default function Home({products,shopImages}) {
 <div className="py-24 flex flex-col gap-24">
   <div className=" w-full xl:w-3/5 justify-start flex flex-col gap-10">
 <div className="flex flex-col gap-5">
-      <h2 className="text-4xl w-fit text-white">Who We Are?
+      <h2 className="text-3xl w-fit text-white">Who We Are?
       <span className="block">Or What Just Makes Us Different</span>
        </h2>
        <p className="text-lg lg:text-2xl	text-zinc-300">At iTech Care, we offer expert repair services for all kinds of mobile phones, including cracked screens, water damage, charging issues, and more. </p>
@@ -334,7 +334,7 @@ export default function Home({products,shopImages}) {
 <section className="bg-white " id="address-section">
 <div className="flex gap-16 py-24 container flex-col xl:flex-row    mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className=" w-full xl:w-1/2 px-4 justify-start flex flex-col gap-8">
-  <h2 className="text-4xl w-fit">Close to You
+  <h2 className="text-3xl w-fit">Close to You
     <span className="block">  Like Always</span>
    </h2>
    <div className="flex flex-row gap-4 items-center">
@@ -399,7 +399,7 @@ export default function Home({products,shopImages}) {
 <section  id="contact-section" className="bg-white px-4">
 <div className="flex gap-16 py-24 container flex-col xl:flex-row  justify-center items-center  mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
   <div className="w-full md:w-4/5 lg:w-2/5  justify-center items-center flex flex-col gap-8">
-  <h2 className="text-4xl w-fit text-center">We’re Always Here
+  <h2 className="text-3xl w-fit text-center">We’re Always Here
   
     <span className="block">  To Serve Your Needs</span>
    </h2>

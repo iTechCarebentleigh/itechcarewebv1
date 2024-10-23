@@ -1,5 +1,6 @@
+// schemas/repairCategory.js
 import { defineType, defineField } from 'sanity';
-import { repairItem } from './repairItem'; // Import the repair item schema
+import { repairItem } from './repairItem';
 
 export const repairCategory = defineType({
   name: 'repairCategory',
@@ -16,9 +17,7 @@ export const repairCategory = defineType({
       name: 'templateImage',
       type: 'image',
       title: 'Template Image',
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
       fields: [
         defineField({
           name: 'alt',
@@ -33,7 +32,7 @@ export const repairCategory = defineType({
       type: 'array',
       title: 'Repairs',
       of: [{ type: 'repairItem' }],
-      validation: (rule) => rule.required().error('Repair is required')
+      validation: (rule) => rule.required().error('Repair is required'),
     }),
   ],
 });

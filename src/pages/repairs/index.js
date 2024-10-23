@@ -81,11 +81,11 @@ export default function Repairs({repairPage}) {
         <section className="bg-white px-4 bg-zinc-100 ">
           <div className="flex gap-0 container flex-col gap-4 lg:flex-row justify-between items-end mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
             <div className="w-full xl:w-2/4 py-28 xl:py-36 justify-center items-start flex justify-between flex-col gap-2">
-              <h1 className="text-4xl lg:text-5xl w-fit text-start">
+              <h1 className="text-3xl lg:text-5xl w-fit text-start">
                 Delivering <span className="text-[var(--colors-brand-primary-500)]">exceptional</span> repair service since <span className="text-[var(--colors-brand-primary-500)]">ages</span>.
               </h1>
               <p className="text-xl mb-2 text-zinc-500">Quick and reliable, our repair services will have your mobile devices, tablets, and laptops up and running in no time.</p>
-              <Link href={'/bookrepair'}>
+              <Link href={'/bookrepair'} className="mt-4">
                 <Button variant="primary">Book Repair Now</Button>
               </Link>
             </div>
@@ -96,7 +96,7 @@ export default function Repairs({repairPage}) {
         </section>
         <section className="bg-zinc-900">
           <div className="flex gap-0 text-white px-4 md:px-0 container flex-col gap-8 py-24 justify-between items-start mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
-            <h2 className="text-4xl font-normal">Covering all your <span className="block">device repairs</span></h2>
+            <h2 className="text-3xl font-normal">Covering all your <span className="block">device repairs</span></h2>
             <div className="flex flex-col lg:flex-row justify-between w-full gap-10">
               <div className="flex flex-col gap-16 w-full lg:w-1/2 items-center h-fit">
                 <div className="w-full">
@@ -168,6 +168,39 @@ export default function Repairs({repairPage}) {
               </div>
             </div>
           </div>
+        </section>
+        <section className="text-white px-4 md:px-0 flex bg-[var(--colors-brand-primary-600)]">
+        <div className="flex py-16 gap-0 container flex-col gap-4 lg:flex-row justify-between items-end mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
+        <div className="flex flex-col xl:flex-row gap-10 items-start xl:items-center w-full">
+          <div className="flex flex-col gap-4 w-full xl:w-1/3">
+            <h2 className="text-3xl font-normal">Choose iTech Care for <span className="block">top-tier repair benefits.</span></h2>
+            <p className="text-lg text-zinc-100 font-normal">Choose iTech Care for reliable, high-quality repairs backed by excellent service and customer-focused solutions.</p>
+            <Link href={'/bookrepair'} className="mt-4">
+            <Button variant="primary">Book Repair Now</Button>
+            </Link>
+          </div>
+          <div className="flex flex-col lg:flex-row gap-4 w-full xl:w-2/3">
+            <div className="w-full  xl:w-1/3 flex flex-col h-[680px] md:h-[1080px] lg:h-[480px]  bg-zinc-900">
+            <div className="h-5/6 overflow-hidden w-full"><img alt="Skilled Technicians" className="w-full" src="/static-images/technician.png"/></div>
+            <div className="h-1/6 p-4">
+            <h4 className="text-xl lg:text-lg text-white">Skilled repair technician</h4>
+            </div>
+            </div>
+            <div className="w-full  xl:w-1/3 flex flex-col h-[580px] md:h-[480px]  bg-zinc-900">
+            <div className="h-5/6 overflow-hidden w-full"><img alt="Genuine Repair Parts" className="w-full" src="/static-images/parts-genuine.png"/></div>
+            <div className="h-1/6 p-4">
+            <h4 className="text-xl lg:text-lg text-white">Only high quality parts</h4>
+            </div>
+            </div>
+            <div className="w-full  xl:w-1/3 flex flex-col h-[580px] md:h-[480px]  bg-zinc-900">
+            <div className="h-5/6 overflow-hidden w-full"><img className="w-full" alt="quality warranty" src="/static-images/warranty.png"/></div>
+            <div className="h-1/6 p-4">
+            <h4 className="text-xl lg:text-lg text-white">Quality Guarantee</h4>
+            </div>
+            </div>
+          </div>
+        </div>
+        </div>
         </section>
         <FAQ />
         <Footer />

@@ -1,5 +1,3 @@
-"use client"
-
 import { useState ,useCallback,useRef } from 'react';
 import { Footer, Header, Usersform, Magnifier, Breadcrumb } from '@/components';
 import { useRouter } from 'next/router';
@@ -9,14 +7,13 @@ import { PortableText } from '@portabletext/react';
 import { urlForImage } from "./../../../sanity/lib/image";
 import { TextContainer,TextField, ButtonGroup, Button, Icon , Frame, Modal} from '@shopify/polaris';
 import Image from 'next/image';
-import MetaTags from "@/components/metatags";
-import React from 'react';
 
 const ProductPage = ({ product }) => {
   const [inStock, setInStock] = useState(product?.instock ?? false);
   const router = useRouter();
   const imageRef=useRef();
   const [active, setActive] = useState(false);
+
 
   const handleChange = useCallback(() => 
   {
@@ -30,7 +27,7 @@ const ProductPage = ({ product }) => {
   }
 
   const handleCall = () => {
-    window.location.href = `tel:${process.env.BUSINESS_LANDLINE_NUMBER}`;
+    window.location.href = 'tel:+610490125225';
   };
 
   const breadcrumbLinks = [
@@ -39,14 +36,15 @@ const ProductPage = ({ product }) => {
     { text: product.name },
   ];
 
+    console.log(product)
+
 
   return (
     <>
       <Head>
         <title>{product.name}</title>
-        <MetaTags keywords={product.name} title={product.name} description={`Buy ${product.name} today: ${process.env.BUSINESS_EMAIL} |  `}/>
-
       </Head>
+      <Header />
       <main>
         <section className='w-full bg-slate-50'>
           <div className="flex gap-4 gap-28 py-16 container flex-col justify-center mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">
@@ -94,22 +92,21 @@ const ProductPage = ({ product }) => {
           if (typeof child === 'string') {
             // Split the string by <br/> and map to React elements
             return child.split(/<br\s*\/?>/i).map((part, i) => (
-              <React.Fragment key={`part-${index}-${i}`}>
+              <>
                 {part}
                 {i < child.split(/<br\s*\/?>/i).length - 1 && <br key={`br-${index}-${i}`} />} {/* Insert <br /> only if it's not the last part */}
-              </React.Fragment>
+              </>
             ));
           }
           return child; // Return non-string children as-is
         });
-      
+
         return (
           <p className="text-base whitespace-pre-wrap text-slate-500">
             {formattedChildren}
           </p>
         );
       },
-      
     },
     list: {
       bullet: ({ children }) => <ul className="list-disc ml-5 flex flex-col gap-2">{children}</ul>,
@@ -161,7 +158,7 @@ const ProductPage = ({ product }) => {
                     {inStock ? <div className='flex flex-col gap-4 items-start'>
                       <div className='flex flex-row gap-4 items-center'>
                     <h6>Buy now:</h6>
-                    <Button size="medium" onClick={handleCall}>{`Call: ${process.env.NEXT_PUBLIC_BUSINESS_LANDLINE_NUMBER}`}</Button></div>
+                    <Button size="medium" onClick={handleCall}>Call: 0490125225</Button></div>
                     <div className='w-full flex flex-col text-center'>Or</div>
 
                     <Usersform />
@@ -185,7 +182,7 @@ export async function getStaticPaths() {
   const paths = products.map((product) => ({
     params: { slug: product.slug },
   }));
-console.log(slug)
+
   return { paths, fallback: true };
 }
 
@@ -205,6 +202,5 @@ export async function getStaticProps({ params }) {
     revalidate: 1, // Optionally revalidate data at an interval
   };
 }
-
 
 export default ProductPage;
