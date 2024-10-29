@@ -42,7 +42,7 @@ export default function Contact() {
     fill="#F24241"
   />
 </svg>
-{`Call: ${process.env.NEXT_PUBLIC_BUSINESS_CELL_NUMBER}`}
+{`${process.env.NEXT_PUBLIC_BUSINESS_CELL_NUMBER}`}
 
             </div>
             <div className="flex flex-row gap-1 items-center text-sm">
@@ -63,7 +63,7 @@ export default function Contact() {
   />
 </svg>
 
-{`Call: ${process.env.NEXT_PUBLIC_BUSINESS_EMAIL}`}
+{`${process.env.NEXT_PUBLIC_BUSINESS_EMAIL}`}
 
             </div>
             
