@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Inter } from "next/font/google";
@@ -21,7 +23,7 @@ export default function Privacypolicy() {
     </Head>
     <main >
     <div className="logo-container flex py-4 justify-center bg-slate-50">
-   <Link href={'/'}>
+   {/* <Link href={'/'}>
         <svg
       width={218}
       height={44}
@@ -93,7 +95,7 @@ export default function Privacypolicy() {
         </clipPath>
       </defs>
     </svg>
-   </Link>
+   </Link> */}
 
 </div>
 <section className="bg-slate-50 px-4">
@@ -174,8 +176,8 @@ export default function Privacypolicy() {
             <address className="text-lg text-zinc-900 font-normal mt-8">
             
             <div className="text-lg text-zinc-900 font-normal mt-8">iTech Care<span className="block">359 Centre road, Bentleigh VIC 3204</span> 
-            <span className="mt-8">Email: itechcare.bentleigh@gmail.com</span>
-            <span className="block">Phone: +61 9191 2669</span>
+            <span className="mt-8">{`Email: ${process.env.NEXT_PUBLIC_BUSINESS_EMAIL}`}</span>
+            <span className="block">{`Phone: ${process.env.NEXT_PUBLIC_BUSINESS_CELL_NUMBER}`}</span>
             </div>
               </address>                     
             </li>

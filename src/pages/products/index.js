@@ -49,7 +49,6 @@ const Productshomepage = ({ products }) => {
       <Head>
         <title>All Products</title>
       </Head>
-      <Header />
 
       <section className="bg-slate-50 px-4">
         <div className="flex gap-4 container flex-col justify-center items-center mx-auto h-full w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl">

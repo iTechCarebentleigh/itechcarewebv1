@@ -4,6 +4,8 @@ import { db } from "../../firebase";
 import { Button, TextField, Banner } from '@shopify/polaris';
 import Link from "next/link";
 import emailjs from 'emailjs-com';
+import { toast } from 'sonner'
+
 
 export default function Usersform() {
   const [name, setName] = useState("");
@@ -31,14 +33,14 @@ export default function Usersform() {
     fetchUsers();
   }, []);
 
-  useEffect(() => {
-    if (showBanner) {
-      const timer = setTimeout(() => {
-        setShowBanner(false);
-      }, 3000);
-      return () => clearTimeout(timer); // Cleanup the timeout if the component unmounts
-    }
-  }, [showBanner]);
+  // useEffect(() => {
+  //   if (showBanner) {
+  //     const timer = setTimeout(() => {
+  //       setShowBanner(false);
+  //     }, 3000);
+  //     return () => clearTimeout(timer); // Cleanup the timeout if the component unmounts
+  //   }
+  // }, [showBanner]);
 
   const validateFields = () => {
     const errors = {};
@@ -49,7 +51,7 @@ export default function Usersform() {
   };
 
   // Add user to state
-  const addUsers = async (e) => {
+  const sendMessage = async (e) => {
     e.preventDefault();
     const errors = validateFields();
     if (Object.keys(errors).length > 0) {
@@ -58,17 +60,17 @@ export default function Usersform() {
     }
 
     setSending(true);
-    const newUser = { name, email, phone, message };
+    const newMessage = { name, email, phone, message };
 
     try {
-      await addDoc(collection(db, 'Users'), {
-        name: newUser.name.trim(),
-        email: newUser.email.trim(),
-        phone: newUser.phone,
-        message: newUser.message.trim(),
+      await addDoc(collection(db, 'Messages'), {
+        name: newMessage.name.trim(),
+        email: newMessage.email.trim(),
+        phone: newMessage.phone,
+        message: newMessage.message.trim(),
         createdAt: serverTimestamp() // Add timestamp field here
       });
-      setUsers([...users, newUser]);
+      setUsers([...users, newMessage]);
 
       // Send email using EmailJS
       emailjs
@@ -85,9 +87,11 @@ export default function Usersform() {
       setPhone("");
       setMessage("");
       setErrors({});
-      setShowBanner(true); // Show banner on successful submission
+      toast.success("Message Sent Successfully")
     } catch (error) {
       console.error("Error adding document: ", error);
+      toast.error("Error sending message.")
+
     } finally {
       setSending(false);
     }
@@ -95,7 +99,7 @@ export default function Usersform() {
 
   return (
     <>
-      <form onSubmit={addUsers} className="flex flex-col gap-4 w-full">
+      <form onSubmit={sendMessage} className="flex flex-col gap-4 w-full">
         <TextField
           label="Name"
           value={name}
@@ -136,14 +140,14 @@ export default function Usersform() {
         />
         <Button variant="primary" submit loading={sending}>Submit</Button>
       </form>
-      {showBanner && (
+      {/* {showBanner && (
         <Banner
           onDismiss={() => setShowBanner(false)}
         >
           <p>Your query has been submitted!</p>
         </Banner>
-      )}
-      <p className="text-lg text-center text-zinc-500">
+      )} */}
+      <p className="text-lg text-start text-zinc-500">
         By submitting, you agree to our <Link className="text-semantic-action-600 underline" href={'/privacy-policy'}>Privacy Policy</Link> and <Link className="text-semantic-action-600 underline" href={'/terms-and-conditions'}>Terms & Conditions</Link>
       </p>
     </>
