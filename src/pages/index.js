@@ -154,9 +154,11 @@ export default function Home({products,shopImages}) {
     </Link>
     </div>
    <div className="flex flex-wrap gap-4 lg:gap-10 justify-center  ">
-   {products.slice(0, 4).map(product => (
-  <Link href={`/products/${product.slug}`} key={product.slug} passHref>
-  
+   {products
+  .filter(product => product.instock) // Only include products with stock
+  .slice(0, 4)
+  .map(product => (
+    <Link href={`/products/${product.slug}`} key={product.slug} passHref>
       <Productcard
         productTitle={product.name}
         productDescription={product.description}
@@ -164,9 +166,9 @@ export default function Home({products,shopImages}) {
         initialStock={product.instock}
         condition={product.condition}
       />
- 
-  </Link>
-))}
+    </Link>
+  ))}
+
 
    </div>
 

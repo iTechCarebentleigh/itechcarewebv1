@@ -23,25 +23,28 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 const Herocarousel = () => {
 
     const [isClicked, setIsClicked] = useState(false);
-
-  useEffect(() => {
-    if (isClicked) {
-      const targetDiv = document.getElementById('scroll-container');
-      if (targetDiv) {
-        // Get the top position of the div relative to the viewport
-        const topPosition = targetDiv.getBoundingClientRect().top + window.pageYOffset;
-
-        // Scroll to the top of the div with an offset of 32px
-        window.scrollTo({ 
-          top: topPosition - 80, // Offset the scroll by 32px
-          behavior: 'smooth' 
-        });
+    useEffect(() => {
+      if (isClicked) {
+        const targetDiv = document.getElementById('scroll-container');
+        if (targetDiv) {
+          // Check if the viewport width is greater than 1024 pixels
+          if (window.innerWidth > 1024) {
+            // Get the top position of the div relative to the viewport
+            const topPosition = targetDiv.getBoundingClientRect().top + window.pageYOffset;
+    
+            // Scroll to the top of the div with an offset of 32px
+            window.scrollTo({ 
+              top: topPosition - 80, // Offset the scroll by 80px
+              behavior: 'smooth' 
+            });
+          }
+        }
+    
+        // Reset the state after scrolling to avoid continuous scrolling
+        setIsClicked(false);
       }
-
-      // Reset the state after scrolling to avoid continuous scrolling
-      setIsClicked(false);
-    }
-  }, [isClicked]);
+    }, [isClicked]);
+    
 
   const handleClick = (e) => {
     const scrollContainer = document.getElementById('scroll-container');

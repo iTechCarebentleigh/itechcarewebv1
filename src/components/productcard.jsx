@@ -32,9 +32,12 @@ export default function Productcard({ productTitle, productDescription, initialS
         <>
             <div
                
-                className="flex hover:shadow-xl hover:shadow-slate-200 bg-white w-40 lg:w-64  h-64 lg:h-96 flex-col rounded-xl overflow-hidden transition-shadow duration-300 ease-in-out focus:outline-none "
+                className="flex relative hover:shadow-xl hover:shadow-slate-200 bg-white w-40 lg:w-64  h-64 lg:h-96 flex-col rounded-xl overflow-hidden transition-shadow duration-300 ease-in-out focus:outline-none "
                 tabIndex="0" // Make div focusable
             >
+                {!initialStock &&
+                <div  style={{zIndex:2,width:'100%',height:'100%'}} className="w-100 h-100 absolute top-0 left-0 bg-zinc-100 bg-opacity-70 flex items-center justify-center"><span className="text-5xl -rotate-45 text-zinc-500 uppercase font-semibold">sold</span></div>
+                }
                 <div className="w-full relative h-3/5">
                     {condition && (
                         <div className="absolute top-4 right-4">
