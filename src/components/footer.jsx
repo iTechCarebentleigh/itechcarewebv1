@@ -139,7 +139,7 @@ export default function Footer() {
       <li>Thursday 09:00 am – 06:00 pm</li>
       <li>Friday 09:00 am – 06:00 pm</li>
       <li>Saturday 10:00 am – 05:00 pm</li>
-      <li>Sunday 10:00 am – 05:00 pm</li>
+      <li>Sunday 10:00 am – 03:00 pm</li>
 
 
     </ul>

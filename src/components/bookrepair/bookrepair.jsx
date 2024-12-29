@@ -178,47 +178,62 @@ const Bookrepair = () => {
         return; // Exit early
     }
 
-    // Check valid booking time
-    const visitDateMoment = moment.tz(visitDate, 'Australia/Sydney');
-    const dayOfWeek = visitDateMoment.day();
-    const hour = visitDateMoment.hour();
-    const minute = visitDateMoment.minute();
-    const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
-    const isWeekdayValid = (hour > 9 || (hour === 9 && minute >= 0)) && 
-                           (hour < 17 || (hour === 17 && minute <= 30));
-    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-    const isWeekendValid = (hour > 10 || (hour === 10 && minute >= 0)) && 
-                           (hour < 16 || (hour === 16 && minute <= 30));
+   // Check valid booking time
+const visitDateMoment = moment.tz(visitDate, 'Australia/Sydney');
+const dayOfWeek = visitDateMoment.day();
+const hour = visitDateMoment.hour();
+const minute = visitDateMoment.minute();
 
-    if (!(isWeekday && isWeekdayValid) && !(isWeekend && isWeekendValid)) {
-        toast.custom((t) => (
-            <div style={{fontFamily:"var(--typography-font-family-sansserif)"}} className="w-full md:w-[350px] bg-amber-50 border border-amber-300 px-3 py-2 text-amber-500 rounded-xl shadow-2xl">
-                <div className="flex gap-2 items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="size-4" fill="currentColor" viewBox="0 0 16 16">
-                        <path fillRule="evenodd" d="M6.701 2.25c.577-1 2.02-1 2.598 0l5.196 9a1.5 1.5 0 0 1-1.299 2.25H2.804a1.5 1.5 0 0 1-1.3-2.25l5.197-9ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 1 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
-                    </svg>
-                    <span>Sorry, we aren't available at that period.</span>
-                </div>
-                <div className="mt-4 w-full">
-                    <span className="text-lg font-semibold">Booking Hours:</span>
-                    <table className="mt-1 border-collapse border border-amber-300 w-full">
-                        <tbody>
-                            <tr>
-                                <td className="border border-amber-300 p-2 font-semibold">Weekdays</td>
-                                <td className="border border-amber-300 p-2 flex justify-end">9:00 AM - 5:30 PM</td>
-                            </tr>
-                            <tr>
-                                <td className="border border-amber-300 p-2 font-semibold">Weekends</td>
-                                <td className="border border-amber-300 p-2 flex justify-end">10:00 AM - 4:30 PM</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+// Weekday (Monday to Friday) validation
+const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
+const isWeekdayValid = (hour > 9 || (hour === 9 && minute >= 0)) && 
+                       (hour < 17 || (hour === 17 && minute <= 30));
+
+// Saturday validation (up to 4:00 PM)
+const isSaturday = dayOfWeek === 6;
+const isSaturdayValid = (hour > 10 || (hour === 10 && minute >= 0)) && 
+                        (hour < 16 || (hour === 16 && minute <= 0));
+
+// Sunday validation (up to 3:00 PM)
+const isSunday = dayOfWeek === 0;
+const isSundayValid = (hour > 10 || (hour === 10 && minute >= 0)) && 
+                      (hour < 15 || (hour === 15 && minute <= 0));
+
+// Combine validations
+if (!(isWeekday && isWeekdayValid) && !(isSaturday && isSaturdayValid) && !(isSunday && isSundayValid)) {
+    toast.custom((t) => (
+        <div style={{ fontFamily: "var(--typography-font-family-sansserif)" }} className="w-full md:w-[350px] bg-amber-50 border border-amber-300 px-3 py-2 text-amber-500 rounded-xl shadow-2xl">
+            <div className="flex gap-2 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="size-4" fill="currentColor" viewBox="0 0 16 16">
+                    <path fillRule="evenodd" d="M6.701 2.25c.577-1 2.02-1 2.598 0l5.196 9a1.5 1.5 0 0 1-1.299 2.25H2.804a1.5 1.5 0 0 1-1.3-2.25l5.197-9ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 1 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
+                </svg>
+                <span>Sorry, we aren't available at that period.</span>
             </div>
-        ));
-        setQueryLoading(false); // Reset loading state
-        return; // Prevent submission
-    }
+            <div className="mt-4 w-full">
+                <span className="text-lg font-semibold">Booking Hours:</span>
+                <table className="mt-1 border-collapse border border-amber-300 w-full">
+                    <tbody>
+                        <tr>
+                            <td className="border border-amber-300 p-2 font-semibold">Weekdays</td>
+                            <td className="border border-amber-300 p-2 flex justify-end">9:00 AM - 5:30 PM</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-amber-300 p-2 font-semibold">Saturday</td>
+                            <td className="border border-amber-300 p-2 flex justify-end">10:00 AM - 4:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-amber-300 p-2 font-semibold">Sunday</td>
+                            <td className="border border-amber-300 p-2 flex justify-end">10:00 AM - 3:00 PM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    ));
+    setQueryLoading(false); // Reset loading state
+    return; // Prevent submission
+}
+
 
     // Proceed with form submission if no errors
     setValidationErrorsAvailable(false);

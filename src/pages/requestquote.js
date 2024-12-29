@@ -121,7 +121,7 @@ export default function Requestaquote() {
 
   
       </div>
-      <p className="text-lg text-center max-w-32"><strong>2.</strong> Tell us abour the issue</p>
+      <p className="text-lg text-center max-w-32"><strong>2.</strong> Tell us about the issue</p>
     </div>
     <div className="flex flex-col items-center gap-4 px-2 bg-white">
       <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full flex items-center justify-center shadow-2xl">
