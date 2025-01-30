@@ -32,12 +32,7 @@ export default function Home({products,shopImages}) {
 
   return (
     <>
-    <Head>
-      <title>iTech Care-Top Repairs, Quality Accessories</title>
-           {/* Basic Meta Tags */}
-           <meta charSet="UTF-8" />
-       <MetaTags/>
-    </Head>
+  
     <main >
 
 <Herocarousel/>
