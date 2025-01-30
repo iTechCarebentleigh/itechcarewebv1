@@ -279,7 +279,15 @@ export default function Home({products,shopImages}) {
       <h2 className="text-3xl w-fit text-white">Who We Are?
       <span className="block">Or What Just Makes Us Different</span>
        </h2>
-       <p className="text-lg lg:text-2xl	text-zinc-300">At iTech Care, we offer expert repair services for all kinds of mobile phones, including cracked screens, water damage, charging issues, and more. </p>
+       <p className="text-lg lg:text-2xl	text-zinc-300">At iTech Care in Bentleigh, Australia, we provide expert mobile phone repair services, including fixing cracked screens, water damage, charging issues, and more. Whether you need a quick screen replacement or a complex repair, our skilled technicians are here to help. Visit us for fast and reliable service!
+
+
+
+
+
+
+
+</p>
 </div>
      <Link href={'/repairs'}>
        <Button >Explore Repairs</Button>

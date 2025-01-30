@@ -1,11 +1,11 @@
 const SEO = {
-  title: 'iTech Care - Top Repairs, Quality Accessories',
-  description: "iTechCare, your only needed friend for device repair",
+  title: 'iTech Care - Top Repairs, Quality Accessories in Bentleigh, Australia.',
+  description: "At iTech Care in Bentleigh, Australia, we provide expert mobile phone repair services, including fixing cracked screens, water damage, charging issues, and more. Whether you need a quick screen replacement or a complex repair, our skilled technicians are here to help. Visit us for fast and reliable service!",
     openGraph: {
       type: 'website',
       url: 'https://www.itechcare.com.au',
       title: 'iTech Care - Top Repairs, Quality Accessories',
-      description: 'iTechCare, your only needed friend for device repair',
+      description: 'At iTech Care in Bentleigh, Australia, we provide expert mobile phone repair services, including fixing cracked screens, water damage, charging issues, and more. Whether you need a quick screen replacement or a complex repair, our skilled technicians are here to help. Visit us for fast and reliable service!',
       images: [
         {
           url: '/cover-image.png',
