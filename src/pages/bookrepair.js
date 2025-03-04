@@ -290,7 +290,7 @@ export default function Bookarepair() {
 </section>
         {/* Book Repair Section */}
         <section id="bookrepair" className="bg-white dark:bg-zinc-900 dark:text-white px-4">
-          <div className="container flex flex-col items-center">
+          <div className="container flex flex-col items-center justify-center mx-auto">
             <div className="w-full lg:w-2/5 py-16">
               <Bookrepair />
             </div>

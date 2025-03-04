@@ -304,7 +304,7 @@ export default function Requestaquote() {
 </section>
         {/* Book Repair Section */}
         <section id='requestQuote' className="bg-white dark:bg-zinc-900 dark:text-white px-4">
-          <div className="container flex flex-col items-center">
+          <div className="container flex flex-col mx-auto items-center">
             <div className="w-full lg:w-2/5 py-16">
               <Requestquote />
             </div>
